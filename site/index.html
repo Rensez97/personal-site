@@ -79,8 +79,41 @@
         <span style="font-family:'IBM Plex Mono';font-size:13px;color:#0F7A68;line-height:1.3;">This page ran <span data-count>3</span> SQL queries in your browser to draw what's below.</span>
       </div>
     </div>
-    <div class="hero-media" style="position:relative;min-height:380px;border-radius:12px;overflow:hidden;">
-      <div class="img-slot">Drop a hero image — you, your workspace, or Groningen</div>
+    <div class="hero-media" style="position:relative;min-height:380px;border-radius:12px;overflow:hidden;background:#FBF8F1;border:1px solid #E4DCCC;box-shadow:0 20px 40px -30px rgba(34,29,22,.4);display:flex;flex-direction:column;padding:22px 24px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">
+        <span>github stars · cumulative (k)</span>
+        <span style="color:#0F7A68;">▲ measured daily</span>
+      </div>
+      <svg viewBox="0 0 480 320" preserveAspectRatio="none" style="width:100%;flex:1;margin-top:14px;overflow:visible;" role="img" aria-label="Cumulative growth chart of the modern data stack">
+        <defs>
+          <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0F7A68" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#0F7A68" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- gridlines -->
+        <g stroke="#E4DCCC" stroke-width="1" stroke-dasharray="2 5">
+          <line x1="0" y1="70" x2="480" y2="70"/>
+          <line x1="0" y1="150" x2="480" y2="150"/>
+          <line x1="0" y1="230" x2="480" y2="230"/>
+        </g>
+        <line x1="0" y1="300" x2="480" y2="300" stroke="#D8CFBD" stroke-width="1"/>
+        <!-- ghost series -->
+        <polyline points="0,255 60,247 120,238 180,229 240,220 300,212 360,205 420,198 480,192" fill="none" stroke="#B8AF9C" stroke-width="1.4" stroke-linejoin="round"/>
+        <polyline points="0,292 60,286 120,279 180,273 240,268 300,263 360,259 420,256 480,253" fill="none" stroke="#CFC6B3" stroke-width="1.4" stroke-linejoin="round"/>
+        <!-- primary series (teal) with area fill -->
+        <path d="M0,286 L60,272 L120,255 L180,231 L240,205 L300,171 L360,134 L420,99 L480,70 L480,300 L0,300 Z" fill="url(#heroFill)"/>
+        <polyline points="0,286 60,272 120,255 180,231 240,205 300,171 360,134 420,99 480,70" fill="none" stroke="#0F7A68" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="480" cy="70" r="5.5" fill="#0F7A68"/>
+        <circle cx="480" cy="70" r="11" fill="#0F7A68" opacity="0.14"/>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:8px;">
+        <span>'24</span><span>'25</span><span>'26</span>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #E4DCCC;">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono';font-size:11px;color:#221D16;"><span style="width:14px;height:3px;background:#0F7A68;border-radius:2px;"></span>duckdb</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono';font-size:11px;color:#5A5348;"><span style="width:14px;height:2px;background:#B8AF9C;border-radius:2px;"></span>the rest</span>
+      </div>
     </div>
   </div>
 </header>
@@ -200,27 +233,62 @@
       <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;"><strong style="font-weight:600;color:#221D16;">MSc</strong> in Technology &amp; Operations Management and <strong style="font-weight:600;color:#221D16;">BSc</strong> in Information Science, both from the <strong style="font-weight:600;color:#221D16;">University of Groningen</strong>.</p>
       <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0;max-width:60ch;">I have a bias: small, sharp stacks over heavy ones. DuckDB and Parquet before a running cluster. Pipelines that run in CI, not on a server someone has to babysit. Boring infrastructure that stays up.</p>
     </div>
-    <div class="about-media" style="position:relative;width:100%;aspect-ratio:4/5;">
-      <div class="img-slot" style="border-radius:12px;overflow:hidden;">Drop a photo</div>
+    <aside class="about-media" style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:22px 24px;">
+      <div style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;letter-spacing:.04em;margin-bottom:16px;">At a glance</div>
+      <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 16px;font-size:13.5px;line-height:1.5;">
+        <dt style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Based</dt><dd style="margin:0;color:#221D16;">Groningen, NL</dd>
+        <dt style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Now</dt><dd style="margin:0;color:#221D16;">Data platform @ Winparts</dd>
+        <dt style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Reaches for</dt><dd style="margin:0;color:#221D16;">DuckDB · dbt · dlt · Parquet</dd>
+        <dt style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Studied</dt><dd style="margin:0;color:#221D16;">MSc TOM · BSc Information Science, RUG</dd>
+        <dt style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">This runs on</dt><dd style="margin:0;color:#221D16;">Cloudflare edge · Hetzner + WireGuard</dd>
+      </dl>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid #E4DCCC;font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;">
+        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#0F7A68;box-shadow:0 0 0 4px rgba(15,122,104,.16);margin-right:8px;"></span>Open to interesting data problems
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- HOW I WORK band -->
+<section id="approach" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 0;">
+  <div class="container">
+    <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:26px;">How I work</div>
+    <div class="card-grid">
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">01</div>
+        <h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Right-sized, not rebuilt</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Most workloads don't need a cluster. DuckDB, Parquet and a single box go a long way before you reach for anything heavier — and cost a fraction to run.</p>
+      </div>
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">02</div>
+        <h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Pipelines in CI, not on call</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Scheduled jobs belong in version control and CI, where they're reviewable and reproducible — not on a server someone has to babysit at 3am.</p>
+      </div>
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">03</div>
+        <h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Boring that stays up</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Fewer moving parts, clearer failure modes, less to page you about. The best infrastructure is the kind you stop thinking about.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- WRITING band -->
-<section id="writing" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 0;">
+<section id="writing" style="border-top:1px solid #E4DCCC;padding:66px 0;">
   <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:26px;flex-wrap:wrap;">
-      <div>
-        <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:8px;">Writing</div>
-        <p style="font-size:15.5px;line-height:1.6;color:#5A5348;margin:0;max-width:52ch;">Occasional notes on data engineering — mostly about doing more with less.</p>
+    <div style="margin-bottom:26px;">
+      <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:8px;">Writing</div>
+      <p style="font-size:15.5px;line-height:1.6;color:#5A5348;margin:0;max-width:52ch;">Occasional notes on data engineering — mostly about doing more with less. First one below; the rest arrive when they're worth reading.</p>
+    </div>
+    <a href="blog.html" style="text-decoration:none;display:block;background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:30px 28px;">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono';font-size:10.5px;color:#0F7A68;margin-bottom:12px;">
+        <span style="border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:3px 10px;">first note</span>
+        <span style="color:#B8AF9C;">in progress</span>
       </div>
-      <a href="blog.html" style="font-family:'IBM Plex Mono';font-size:12.5px;white-space:nowrap;">All notes →</a>
-    </div>
-    <div class="card-grid">
-      <a href="blog.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">Do you actually need Snowflake?</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">A decision framework for smaller companies.</p></a>
-      <a href="blog.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">DuckLake vs. the traditional lakehouse</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">What actually changes when the catalog is a database.</p></a>
-      <a href="blog.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">Self-hosting a data stack on Hetzner</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">The real costs and the sharp edges.</p></a>
-    </div>
+      <h3 style="font-family:'Source Serif 4';font-weight:600;font-size:24px;line-height:1.18;color:#221D16;margin:0 0 10px;max-width:30ch;">The open-source stack behind this site</h3>
+      <p style="font-size:15px;line-height:1.65;color:#5A5348;margin:0;max-width:62ch;">A full write-up of how this page runs itself: a <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline in GitHub Actions, DuckDB-WASM querying in your browser, a static site on the edge, and the private box behind it — every piece open and reproducible.</p>
+      <span style="display:inline-block;margin-top:16px;font-family:'IBM Plex Mono';font-size:12px;color:#0F7A68;">Read the note →</span>
+    </a>
   </div>
 </section>
 
@@ -229,9 +297,9 @@
   <div class="container">
     <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:26px;">Things I've built</div>
     <div class="card-grid">
-      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">CasaCatcher</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Automated apartment hunting in Barcelona.</p><a href="#" style="font-family:'IBM Plex Mono';font-size:11.5px;">casacatcher.com ↗</a></div>
-      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">The stack, measured</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">The dashboard above — here's how it's wired.</p><a href="#widget" style="font-family:'IBM Plex Mono';font-size:11.5px;">repo ↗</a></div>
-      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">Data Expo 2026</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">A talk in Utrecht on <span style="font-family:'IBM Plex Mono';font-size:12.5px;color:#8C8476;">[talk topic]</span>.</p><span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;">Slides →</span></div>
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">CasaCatcher</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Automated apartment hunting in Barcelona — scrapers, alerts, the works.</p><a href="https://casacatcher.com" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono';font-size:11.5px;">casacatcher.com ↗</a></div>
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">The stack, measured</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">The live dashboard above — a data platform small enough to fit in a web page. Open source.</p><a href="https://github.com/Rensez97/personal-site" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono';font-size:11.5px;">source ↗</a></div>
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">Data Expo 2026</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Speaking in Utrecht on lightweight data platforms — doing more with less.</p><span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;">Slides · after the talk</span></div>
     </div>
   </div>
 </section>
@@ -242,7 +310,7 @@
     <div style="max-width:560px;margin:0 auto;text-align:center;">
       <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:12px;">Get in touch</div>
       <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:32px;line-height:1.1;color:#221D16;margin:0 0 8px;">Leave a note</h2>
-      <p style="font-size:15px;line-height:1.6;color:#5A5348;margin:0 0 24px;"><span style="font-family:'IBM Plex Mono';font-size:13px;color:#8C8476;">[ your email ]</span> — or use the form below.</p>
+      <p style="font-size:15px;line-height:1.6;color:#5A5348;margin:0 0 24px;"><a href="mailto:rensevdzee@hotmail.com" style="font-family:'IBM Plex Mono';font-size:13px;">rensevdzee@hotmail.com</a> — or use the form below.</p>
       <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:22px;text-align:left;">
         <div style="display:flex;gap:12px;">
           <input placeholder="Name" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
@@ -254,8 +322,8 @@
       <p style="font-family:'Source Serif 4';font-style:italic;font-size:14.5px;color:#8C8476;margin:16px 0 0;">This form posts into a little CRM I built, running behind my VPN. Even the contact box is on-thesis.</p>
     </div>
     <div style="display:flex;justify-content:center;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;margin-top:40px;border-top:1px solid #E4DCCC;padding-top:26px;">
-      <a href="#" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
-      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="https://github.com/Rensez97" target="_blank" rel="noopener" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="https://www.linkedin.com/in/rensevanderzee" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
       <a href="blog.html" style="padding:0 14px;border-right:1px solid #D8CFBD;">Blog</a>
       <a href="more.html" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
     </div>
@@ -267,7 +335,12 @@
   const state = { run: 'idle', count: 3, tab: 'data', ask: null };
   let runTimer = null;
 
-  const series = {
+  // --- Data seam -----------------------------------------------------------
+  // The widget reads its data through ONE async boundary: loadMetrics().
+  // Today it fetches a static JSON (which the daily dlt->dbt->DuckDB Action will
+  // overwrite). To go live later — DuckDB-WASM over Parquet, or an API — swap
+  // ONLY the body of loadMetrics(); every call site below stays unchanged.
+  const FALLBACK_SERIES = {
     stars: [
       {name:'duckdb', color:'#0F7A68', width:2.4, dot:true, data:[8,10,13,17,22,28,35,43,52]},
       {name:'polars', color:'#221D16', width:1.5, data:[12,15,19,24,29,34,39,44,49]},
@@ -284,6 +357,17 @@
       {name:'wiki', color:'#0F7A68', width:2.4, dot:true, data:[42,38,55,61,49,58,72,68,63,80,76,71,85,79]},
     ],
   };
+
+  let series = FALLBACK_SERIES;   // populated by loadMetrics()
+  let metricsPromise = null;
+  async function loadMetrics() {
+    if (metricsPromise) return metricsPromise;
+    metricsPromise = fetch('data/metrics.json', { cache: 'no-cache' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(json => { series = { stars: json.stars, downloads: json.downloads, internet: json.internet }; return series; })
+      .catch(() => { series = FALLBACK_SERIES; return series; });   // offline / file:// -> inline copy
+    return metricsPromise;
+  }
 
   function buildChartSVG(list, w, h) {
     const padL = 6, padR = 10, padT = 12, padB = 14;
@@ -360,7 +444,11 @@
     state.run = 'running';
     render();
     clearTimeout(runTimer);
-    runTimer = setTimeout(() => {
+    // Kick off the data load while the pipeline animation plays, so charts are
+    // ready the moment we flip to 'loaded'.
+    const dataReady = loadMetrics();
+    runTimer = setTimeout(async () => {
+      await dataReady;
       state.run = 'loaded';
       state.count += 5;
       render();

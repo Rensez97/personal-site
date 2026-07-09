@@ -1,0 +1,19 @@
+{
+  "_comment": "Demo data for the widget. LATER: the dlt->dbt->DuckDB GitHub Action overwrites this (or a sibling data.parquet) each morning. The frontend reads it through loadMetrics() — that single boundary is the swap point for DuckDB-WASM/an API, so this contract stays stable.",
+  "updated": "2026-07-09",
+  "stars": [
+    {"name": "duckdb", "color": "#0F7A68", "width": 2.4, "dot": true, "data": [8, 10, 13, 17, 22, 28, 35, 43, 52]},
+    {"name": "polars", "color": "#221D16", "width": 1.5, "data": [12, 15, 19, 24, 29, 34, 39, 44, 49]},
+    {"name": "dbt", "color": "#5A5348", "width": 1.5, "data": [7, 8, 8.5, 9, 9.3, 9.6, 9.9, 10.1, 10.3]},
+    {"name": "dlt", "color": "#8C8476", "width": 1.5, "data": [1, 1.5, 2.2, 3, 3.9, 4.8, 5.7, 6.6, 7.5]}
+  ],
+  "downloads": [
+    {"name": "duckdb", "color": "#0F7A68", "width": 2.4, "dot": true, "data": [3, 4, 5, 6.5, 8, 10, 12.5, 15, 18]},
+    {"name": "polars", "color": "#221D16", "width": 1.5, "data": [5, 6.5, 8, 9.5, 11, 13, 15, 17, 19]},
+    {"name": "dbt", "color": "#5A5348", "width": 1.5, "data": [9, 9.5, 10, 10.5, 11, 11.3, 11.6, 11.9, 12.1]},
+    {"name": "dlt", "color": "#8C8476", "width": 1.5, "data": [0.3, 0.5, 0.8, 1.2, 1.8, 2.5, 3.4, 4.4, 5.6]}
+  ],
+  "internet": [
+    {"name": "wiki", "color": "#0F7A68", "width": 2.4, "dot": true, "data": [42, 38, 55, 61, 49, 58, 72, 68, 63, 80, 76, 71, 85, 79]}
+  ]
+}
