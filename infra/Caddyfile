@@ -1,0 +1,27 @@
+# Caddy serves the static site on plain HTTP :80 INSIDE the box only.
+# TLS for visitors is terminated at the Cloudflare edge; the cloudflared tunnel
+# encrypts the edge->box hop. So no certs are managed here on purpose.
+
+:80 {
+	root * /srv/site
+	encode zstd gzip
+	file_server
+
+	# Clean URLs: allow /blog and /more to resolve to blog.html / more.html,
+	# while / serves index.html.
+	try_files {path} {path}.html {path}/index.html /index.html
+
+	# Long cache on immutable-ish data assets (the daily Parquet, images).
+	# Cloudflare also caches these at the edge.
+	@assets path *.parquet *.png *.jpg *.jpeg *.svg *.woff2
+	header @assets Cache-Control "public, max-age=86400"
+
+	# Short cache on HTML so content updates show up quickly.
+	@html path *.html /
+	header @html Cache-Control "public, max-age=300"
+
+	log {
+		output stdout
+		format console
+	}
+}

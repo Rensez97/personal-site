@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing — Rense van der Zee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F4EFE4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#221D16;-webkit-font-smoothing:antialiased;}
+  a{color:#0F7A68;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  @media (max-width:640px){
+    .nav-links{display:none !important;}
+    .pad-x{padding-left:24px !important;padding-right:24px !important;}
+    .hero-h1{font-size:44px !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="pad-x" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 44px;background:rgba(244,239,228,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4DCCC;">
+  <a href="index.html" style="font-family:'Source Serif 4';font-weight:600;font-size:16px;color:#221D16;text-decoration:none;">Rense van der Zee</a>
+  <div class="nav-links" style="display:flex;gap:22px;font-family:'IBM Plex Mono';font-size:12px;">
+    <a href="index.html#widget" style="color:#5A5348;">The stack</a>
+    <a href="index.html#colophon" style="color:#5A5348;">How it works</a>
+    <a href="index.html#about" style="color:#5A5348;">About</a>
+    <a href="blog.html" style="color:#0F7A68;">Writing</a>
+    <a href="index.html#projects" style="color:#5A5348;">Projects</a>
+    <a href="index.html#contact" style="color:#5A5348;">Contact</a>
+  </div>
+  <a href="#" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#0F7A68;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:5px 12px;white-space:nowrap;text-decoration:none;">RSS</a>
+</nav>
+
+<!-- HERO -->
+<header class="pad-x" style="padding:88px 72px 44px;max-width:900px;">
+  <div style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Writing</div>
+  <h1 class="hero-h1" style="font-family:'Source Serif 4';font-weight:600;font-size:62px;line-height:1;letter-spacing:-.018em;margin:18px 0 0;color:#221D16;">Notes</h1>
+  <p style="font-family:'Source Serif 4';font-weight:400;font-size:23px;line-height:1.44;color:#5A5348;max-width:34ch;margin:22px 0 0;">Notes on data engineering — mostly about doing more with less. Occasional, not scheduled.</p>
+  <div style="margin-top:24px;font-family:'IBM Plex Mono';font-size:12.5px;color:#8C8476;">First one soon. <a href="#" style="color:#0F7A68;">Subscribe via RSS →</a></div>
+</header>
+
+<!-- NOTES LIST -->
+<section class="pad-x" style="border-top:1px solid #E4DCCC;padding:20px 72px 40px;">
+  <article style="display:grid;grid-template-columns:1fr auto;gap:12px 28px;align-items:baseline;border-bottom:1px solid #E4DCCC;padding:34px 0;">
+    <div style="max-width:62ch;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.14;letter-spacing:-.01em;margin:0;color:#221D16;">Do you actually need Snowflake?</h2>
+      <p style="font-size:16px;line-height:1.6;color:#5A5348;margin:10px 0 0;">A decision framework for smaller companies — and why the answer is usually no.</p>
+    </div>
+    <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;white-space:nowrap;text-align:right;">draft<br>~8 min read</div>
+  </article>
+  <article style="display:grid;grid-template-columns:1fr auto;gap:12px 28px;align-items:baseline;border-bottom:1px solid #E4DCCC;padding:34px 0;">
+    <div style="max-width:62ch;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.14;letter-spacing:-.01em;margin:0;color:#221D16;">DuckLake vs. the traditional lakehouse</h2>
+      <p style="font-size:16px;line-height:1.6;color:#5A5348;margin:10px 0 0;">What actually changes when the catalog is a database instead of a pile of log files.</p>
+    </div>
+    <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;white-space:nowrap;text-align:right;">draft<br>~6 min read</div>
+  </article>
+  <article style="display:grid;grid-template-columns:1fr auto;gap:12px 28px;align-items:baseline;border-bottom:1px solid #E4DCCC;padding:34px 0;">
+    <div style="max-width:62ch;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.14;letter-spacing:-.01em;margin:0;color:#221D16;">Self-hosting a data stack on Hetzner</h2>
+      <p style="font-size:16px;line-height:1.6;color:#5A5348;margin:10px 0 0;">The real costs and the sharp edges — the stuff the tutorials skip.</p>
+    </div>
+    <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;white-space:nowrap;text-align:right;">draft<br>~10 min read</div>
+  </article>
+</section>
+
+<!-- FOOTER -->
+<section class="pad-x" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:40px 72px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <a href="index.html" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← Home</a>
+    <div style="display:flex;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;">
+      <a href="#" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">RSS</a>
+      <a href="more.html" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

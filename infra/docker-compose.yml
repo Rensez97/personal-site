@@ -1,0 +1,36 @@
+# Public website stack: Caddy serves the static site, cloudflared exposes it
+# through a Cloudflare Tunnel. NOTE: no `ports:` are published — nothing binds
+# to the host's public interface. The only way in is the outbound tunnel, so the
+# box's firewall stays "WireGuard only". Private services (n8n, CRM) live in a
+# separate compose file and are reached over WireGuard.
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: site-caddy
+    restart: unless-stopped
+    volumes:
+      - ../site:/srv/site:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - web
+    # Intentionally NO ports: — only cloudflared (same network) can reach it.
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: site-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      # Token from Cloudflare Zero Trust > Networks > Tunnels > (your tunnel).
+      # The tunnel's public hostname is configured in the dashboard to point at
+      # http://caddy:80 (this Docker service, on the `web` network below).
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - caddy
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

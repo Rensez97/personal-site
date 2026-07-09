@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#F4EFE4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#221D16;-webkit-font-smoothing:antialiased;}
+  a{color:#0F7A68;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  input:focus,textarea:focus{border-color:#0F7A68 !important;}
+  @keyframes nodeOn{from{border-color:#E4DCCC;color:#8C8476;background:#FBF8F1;}to{border-color:#0F7A68;color:#0F7A68;background:#EAF3F0;}}
+  @keyframes barflow{from{width:0%;}to{width:100%;}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<!-- TOP NAV -->
+<nav style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 44px;background:rgba(244,239,228,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4DCCC;">
+  <a href="#top" style="font-family:'Source Serif 4';font-weight:600;font-size:16px;color:#221D16;text-decoration:none;">Rense van der Zee</a>
+  <div style="display:flex;gap:22px;font-family:'IBM Plex Mono';font-size:12px;">
+    <a href="#widget" style="color:#5A5348;">The stack</a>
+    <a href="#colophon" style="color:#5A5348;">How it works</a>
+    <a href="#about" style="color:#5A5348;">About</a>
+    <a href="Blog.dc.html" style="color:#5A5348;">Writing</a>
+    <a href="#projects" style="color:#5A5348;">Projects</a>
+    <a href="#contact" style="color:#5A5348;">Contact</a>
+  </div>
+  <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#0F7A68;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:5px 12px;white-space:nowrap;">{{ count }} queries</span>
+</nav>
+
+<!-- HERO -->
+<header id="top" style="display:grid;grid-template-columns:1.08fr 1fr;min-height:480px;">
+  <div style="display:flex;flex-direction:column;justify-content:center;padding:64px 64px 64px 72px;">
+    <div style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Data engineer · Groningen</div>
+    <h1 style="font-family:'Source Serif 4';font-weight:600;font-size:60px;line-height:1;letter-spacing:-.018em;margin:20px 0 0;color:#221D16;">Rense van der Zee</h1>
+    <p style="font-family:'Source Serif 4';font-weight:400;font-size:24px;line-height:1.42;color:#5A5348;max-width:24ch;margin:24px 0 0;">I like data stacks that stay small and boring — so I built this site to actually run one.</p>
+    <div style="margin-top:30px;display:inline-flex;align-items:center;gap:11px;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:7px;padding:13px 17px;align-self:flex-start;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#0F7A68;box-shadow:0 0 0 4px rgba(15,122,104,.16);flex:none;"></span>
+      <span style="font-family:'IBM Plex Mono';font-size:13px;color:#0F7A68;line-height:1.3;">This page ran {{ count }} SQL queries in your browser to draw what's below.</span>
+    </div>
+  </div>
+  <div style="position:relative;min-height:480px;">
+    <image-slot id="home-hero" shape="rect" placeholder="Drop a hero image — you, your workspace, or Groningen"></image-slot>
+  </div>
+</header>
+
+<!-- WIDGET band -->
+<section id="widget" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 72px;scroll-margin-top:70px;">
+  <div style="max-width:62ch;">
+    <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:14px;">The centerpiece</div>
+    <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:38px;line-height:1.06;letter-spacing:-.012em;margin:0 0 14px;color:#221D16;">The modern data stack, measured</h2>
+    <p style="font-size:16.5px;line-height:1.7;color:#2b261f;margin:0 0 10px;">Everyone has opinions about which tools are winning. This is the data.</p>
+    <p style="font-size:16.5px;line-height:1.7;color:#5A5348;margin:0 0 26px;">Stars are mindshare. Downloads are usage. Here's both — for the tools I actually build with — refreshed every morning by a pipeline that runs while I sleep.</p>
+  </div>
+  <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;overflow:hidden;box-shadow:0 16px 34px -24px rgba(34,29,22,.34);max-width:920px;">
+    <div style="display:flex;border-bottom:1px solid #E4DCCC;background:#FBF8F1;">
+      <button onClick="{{ setTabData }}" style="flex:1;background:transparent;border:none;cursor:pointer;padding:15px 14px 0;font-family:'IBM Plex Sans';font-size:13px;font-weight:500;color:#221D16;">The modern data stack<div style="height:2px;margin-top:9px;border-radius:2px;background:{{ tabBarData }};"></div></button>
+      <button onClick="{{ setTabNet }}" style="flex:1;background:transparent;border:none;cursor:pointer;padding:15px 14px 0;font-family:'IBM Plex Sans';font-size:13px;font-weight:500;color:#5A5348;">What the internet read today<div style="height:2px;margin-top:9px;border-radius:2px;background:{{ tabBarNet }};"></div></button>
+    </div>
+    <sc-if value="{{ idle }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:32px 26px 30px;">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:20px;">Pipeline · idle</div>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:28px;">
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Extract <span style="color:#8C8476;">· dlt</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Transform <span style="color:#8C8476;">· dbt</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Load <span style="color:#8C8476;">· DuckDB</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Parquet → browser</span>
+        </div>
+        <button onClick="{{ onRun }}" style="display:inline-flex;align-items:center;gap:10px;background:#0F7A68;color:#F4EFE4;border:none;font-family:'IBM Plex Sans';font-weight:600;font-size:14px;padding:12px 20px;border-radius:7px;cursor:pointer;">
+          <span style="display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;"></span>Run the pipeline
+        </button>
+        <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;margin-top:14px;line-height:1.5;">Runs the ETL, loads fresh Parquet into DuckDB-WASM, draws the charts — all client-side.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ running }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:32px 26px 30px;">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;color:#0F7A68;margin-bottom:20px;">Pipeline · running</div>
+        <div style="display:flex;gap:12px;">
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease 0s forwards;"><div style="font-size:13px;font-weight:500;">Extract</div><div style="font-size:10px;margin-top:4px;">dlt · github+pypi</div></div>
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease .5s forwards;"><div style="font-size:13px;font-weight:500;">Transform</div><div style="font-size:10px;margin-top:4px;">dbt · models</div></div>
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease 1s forwards;"><div style="font-size:13px;font-weight:500;">Load</div><div style="font-size:10px;margin-top:4px;">duckdb-wasm</div></div>
+        </div>
+        <div style="height:4px;background:#E4DCCC;border-radius:2px;overflow:hidden;margin-top:20px;"><div style="height:100%;background:#0F7A68;animation:barflow 1.7s linear forwards;"></div></div>
+        <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;margin-top:12px;">streaming parquet → duckdb-wasm …</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ loaded }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:28px 26px;animation:fadeUp .5s ease;">
+        <sc-if value="{{ tabData }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:26px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:250px;">
+              <div style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">GitHub stars · cumulative (k)</div>
+              {{ chartStars }}
+              <div style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:4px;">2024 → 2026</div>
+            </div>
+            <div style="flex:1;min-width:250px;">
+              <div style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">Monthly downloads · PyPI + npm (m)</div>
+              {{ chartDownloads }}
+              <div style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:4px;">2024 → 2026</div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ tabNet }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:540px;">
+            <div style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">Wikipedia pageviews · last 14 days (m)</div>
+            {{ chartInternet }}
+            <div style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:4px;">same machinery, lighter data</div>
+          </div>
+        </sc-if>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono';font-size:11.5px;color:#221D16;"><span style="width:15px;height:3px;background:#0F7A68;border-radius:2px;"></span>duckdb</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono';font-size:11.5px;color:#221D16;"><span style="width:15px;height:2px;background:#221D16;border-radius:2px;"></span>polars</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;"><span style="width:15px;height:2px;background:#5A5348;border-radius:2px;"></span>dbt</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;"><span style="width:15px;height:2px;background:#8C8476;border-radius:2px;"></span>dlt</span>
+        </div>
+        <div style="margin-top:24px;border-top:1px solid #E4DCCC;padding-top:20px;">
+          <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;">Ask it anything</div>
+          <div style="display:flex;gap:10px;margin-top:10px;">
+            <input ref="{{ setInput }}" onKeyDown="{{ onAskKey }}" placeholder='e.g. "which tool grew fastest this year?"' style="flex:1;font-family:'IBM Plex Mono';font-size:12.5px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
+            <button onClick="{{ onAsk }}" style="background:#0F7A68;color:#F4EFE4;border:none;font-family:'IBM Plex Sans';font-weight:600;font-size:13px;padding:0 18px;border-radius:6px;cursor:pointer;">Ask</button>
+          </div>
+          <div style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-top:8px;">Your question → SQL → runs in-browser. Never on a server.</div>
+          <sc-if value="{{ hasAsk }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:16px;">
+              <div style="font-family:'IBM Plex Mono';font-size:10.5px;color:#8C8476;">Translated to SQL · 11 ms · 0 bytes to server</div>
+              <pre style="font-family:'IBM Plex Mono';font-size:12px;line-height:1.6;color:#221D16;background:#FBF8F1;border:1px solid #E4DCCC;border-radius:6px;padding:12px 14px;margin:8px 0 0;white-space:pre;overflow:auto;">{{ askSql }}</pre>
+              <div style="font-family:'IBM Plex Mono';font-size:12.5px;color:#0F7A68;font-weight:500;margin-top:12px;">→ {{ askAnswer }}</div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;">
+          <span style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">{{ count }} queries run in this tab</span>
+          <button onClick="{{ onReset }}" style="background:transparent;border:1px solid #D8CFBD;color:#5A5348;font-family:'IBM Plex Mono';font-size:11.5px;padding:6px 12px;border-radius:6px;cursor:pointer;">Reset ↺</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- COLOPHON band -->
+<section id="colophon" style="background:#EAF3F0;border-top:1px solid #CFE3DD;border-bottom:1px solid #CFE3DD;padding:76px 72px;scroll-margin-top:60px;">
+  <div style="font-family:'IBM Plex Mono';font-size:12px;color:#5E9084;margin-bottom:22px;">How this page works</div>
+  <p style="font-family:'Source Serif 4';font-weight:500;font-size:34px;line-height:1.28;letter-spacing:-.01em;color:#0F7A68;margin:0 0 34px;max-width:20ch;">A data platform light enough to fit inside a web page.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;">
+    <p style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">There's no server doing this. No database, no API behind a login, nothing to page me at 3am.</p>
+    <p style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">Every morning a GitHub Action runs a small <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline and commits one Parquet file. The site is static — served from my own <strong style="font-weight:600;">Hetzner</strong> box, behind <strong style="font-weight:600;">Cloudflare</strong>. When you pressed Run, that Parquet loaded into <strong style="font-weight:600;">DuckDB compiled to WebAssembly</strong>, and every query executed right here, in your browser.</p>
+  </div>
+</section>
+
+<!-- ABOUT band -->
+<section id="about" style="border-top:1px solid #E4DCCC;padding:66px 72px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start;scroll-margin-top:60px;">
+  <div>
+    <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:18px;">About</div>
+    <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;">I'm currently building the data platform at <strong style="font-weight:600;color:#221D16;">Winparts</strong>, a fast-growing European car-parts retailer.</p>
+    <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;">Before that I contributed to one of the largest data migrations in the Netherlands — the mortgage migration at <strong style="font-weight:600;color:#221D16;">a.s.r. / Aegon</strong> — through Sogeti, first as a data engineer and before that as a test analyst.</p>
+    <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;"><strong style="font-weight:600;color:#221D16;">MSc</strong> in Technology &amp; Operations Management and <strong style="font-weight:600;color:#221D16;">BSc</strong> in Information Science, both from the <strong style="font-weight:600;color:#221D16;">University of Groningen</strong>.</p>
+    <p style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0;max-width:60ch;">I have a bias: small, sharp stacks over heavy ones. DuckDB and Parquet before a running cluster. Pipelines that run in CI, not on a server someone has to babysit. Boring infrastructure that stays up.</p>
+  </div>
+  <div style="position:relative;width:100%;aspect-ratio:4/5;">
+    <image-slot id="home-about" shape="rounded" radius="12" placeholder="Drop a photo"></image-slot>
+  </div>
+</section>
+
+<!-- WRITING band -->
+<section id="writing" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 72px;">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:26px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:8px;">Writing</div>
+      <p style="font-size:15.5px;line-height:1.6;color:#5A5348;margin:0;max-width:52ch;">Occasional notes on data engineering — mostly about doing more with less.</p>
+    </div>
+    <a href="Blog.dc.html" style="font-family:'IBM Plex Mono';font-size:12.5px;white-space:nowrap;">All notes →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <a href="Blog.dc.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">Do you actually need Snowflake?</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">A decision framework for smaller companies.</p></a>
+    <a href="Blog.dc.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">DuckLake vs. the traditional lakehouse</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">What actually changes when the catalog is a database.</p></a>
+    <a href="Blog.dc.html" style="text-decoration:none;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;">soon</span><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0;">Self-hosting a data stack on Hetzner</h3><p style="font-size:14px;line-height:1.6;color:#5A5348;margin:0;">The real costs and the sharp edges.</p></a>
+  </div>
+</section>
+
+<!-- PROJECTS band -->
+<section id="projects" style="border-top:1px solid #E4DCCC;padding:66px 72px;scroll-margin-top:60px;">
+  <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:26px;">Things I've built</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">CasaCatcher</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Automated apartment hunting in Barcelona.</p><a href="#" style="font-family:'IBM Plex Mono';font-size:11.5px;">casacatcher.com ↗</a></div>
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">The stack, measured</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">The dashboard above — here's how it's wired.</p><a href="#widget" style="font-family:'IBM Plex Mono';font-size:11.5px;">repo ↗</a></div>
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">Data Expo 2026</h3><p style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">A talk in Utrecht on <span style="font-family:'IBM Plex Mono';font-size:12.5px;color:#8C8476;">[talk topic]</span>.</p><span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;">Slides →</span></div>
+  </div>
+</section>
+
+<!-- CONTACT band -->
+<section id="contact" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 72px 40px;scroll-margin-top:60px;">
+  <div style="max-width:560px;margin:0 auto;text-align:center;">
+    <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:12px;">Get in touch</div>
+    <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:32px;line-height:1.1;color:#221D16;margin:0 0 8px;">Leave a note</h2>
+    <p style="font-size:15px;line-height:1.6;color:#5A5348;margin:0 0 24px;"><span style="font-family:'IBM Plex Mono';font-size:13px;color:#8C8476;">[ your email ]</span> — or use the form below.</p>
+    <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:22px;text-align:left;">
+      <div style="display:flex;gap:12px;">
+        <input placeholder="Name" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
+        <input placeholder="Email" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
+      </div>
+      <textarea placeholder="Message" rows="3" style="width:100%;margin-top:12px;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;resize:vertical;"></textarea>
+      <button style="margin-top:14px;width:100%;background:#0F7A68;color:#F4EFE4;border:none;font-family:'IBM Plex Sans';font-weight:600;font-size:14px;padding:12px 20px;border-radius:7px;cursor:pointer;">Send →</button>
+    </div>
+    <p style="font-family:'Source Serif 4';font-style:italic;font-size:14.5px;color:#8C8476;margin:16px 0 0;">This form posts into a little CRM I built, running behind my VPN. Even the contact box is on-thesis.</p>
+  </div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;margin-top:40px;border-top:1px solid #E4DCCC;padding-top:26px;">
+    <a href="#" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+    <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+    <a href="Blog.dc.html" style="padding:0 14px;border-right:1px solid #D8CFBD;">Blog</a>
+    <a href="More.dc.html" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { run:'idle', count:3, ask:null, tab:'data' };
+
+  stars = [
+    {name:'duckdb', color:'#0F7A68', width:2.4, dot:true, data:[8,10,13,17,22,28,35,43,52]},
+    {name:'polars', color:'#221D16', width:1.5, data:[12,15,19,24,29,34,39,44,49]},
+    {name:'dbt',    color:'#5A5348', width:1.5, data:[7,8,8.5,9,9.3,9.6,9.9,10.1,10.3]},
+    {name:'dlt',    color:'#8C8476', width:1.5, data:[1,1.5,2.2,3,3.9,4.8,5.7,6.6,7.5]},
+  ];
+  downloads = [
+    {name:'duckdb', color:'#0F7A68', width:2.4, dot:true, data:[3,4,5,6.5,8,10,12.5,15,18]},
+    {name:'polars', color:'#221D16', width:1.5, data:[5,6.5,8,9.5,11,13,15,17,19]},
+    {name:'dbt',    color:'#5A5348', width:1.5, data:[9,9.5,10,10.5,11,11.3,11.6,11.9,12.1]},
+    {name:'dlt',    color:'#8C8476', width:1.5, data:[0.3,0.5,0.8,1.2,1.8,2.5,3.4,4.4,5.6]},
+  ];
+  internet = [
+    {name:'wiki', color:'#0F7A68', width:2.4, dot:true, data:[42,38,55,61,49,58,72,68,63,80,76,71,85,79]},
+  ];
+
+  buildChart(series, w, h) {
+    const R = React.createElement;
+    const padL = 6, padR = 10, padT = 12, padB = 14;
+    const iw = w - padL - padR, ih = h - padT - padB;
+    const n = series[0].data.length;
+    const max = Math.max(...series.flatMap(s => s.data)) * 1.08;
+    const x = i => padL + i * (iw / (n - 1));
+    const y = v => padT + ih - (v / max) * ih;
+    const grid = [0.5, 1].map(f => R('line', { key:'g'+f, x1:padL, x2:padL+iw, y1:padT+ih-(f*ih), y2:padT+ih-(f*ih), stroke:'#E4DCCC', strokeWidth:1, strokeDasharray:'2 4' }));
+    const lines = series.map(s => R('polyline', { key:s.name, points:s.data.map((v,i)=>x(i)+','+y(v)).join(' '), fill:'none', stroke:s.color, strokeWidth:s.width||1.5, strokeLinejoin:'round', strokeLinecap:'round' }));
+    const dots = series.filter(s=>s.dot).map(s => { const i=s.data.length-1; return R('circle',{ key:'d'+s.name, cx:x(i), cy:y(s.data[i]), r:3.2, fill:s.color }); });
+    return R('svg', { viewBox:`0 0 ${w} ${h}`, width:'100%', height:h, preserveAspectRatio:'none', style:{ display:'block', overflow:'visible' } },
+      ...grid,
+      R('line', { x1:padL, x2:padL+iw, y1:padT+ih, y2:padT+ih, stroke:'#D8CFBD', strokeWidth:1 }),
+      ...lines, ...dots
+    );
+  }
+
+  run() {
+    this.setState({ run:'running' });
+    clearTimeout(this.t);
+    this.t = setTimeout(() => this.setState(s => ({ run:'loaded', count: s.count + 5 })), 1750);
+  }
+  reset() { clearTimeout(this.t); this.setState({ run:'idle', ask:null }); }
+  setTab(tab) { this.setState({ tab }); }
+  ask() {
+    const q = (this.input && this.input.value.trim()) || '';
+    const sql = "SELECT tool,\n       last(stars ORDER BY day) -\n       first(stars ORDER BY day) AS growth\nFROM stars\nGROUP BY tool\nORDER BY growth DESC\nLIMIT 1;";
+    const answer = "duckdb — +44k stars over the window, the steepest of the four.";
+    this.setState(s => ({ ask:{ q, sql, answer }, count: s.count + 1 }));
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      count: s.count,
+      idle: s.run === 'idle',
+      running: s.run === 'running',
+      loaded: s.run === 'loaded',
+      tabData: s.tab === 'data',
+      tabNet: s.tab === 'net',
+      tabBarData: s.tab === 'data' ? '#0F7A68' : 'transparent',
+      tabBarNet: s.tab === 'net' ? '#0F7A68' : 'transparent',
+      hasAsk: !!s.ask,
+      askSql: s.ask ? s.ask.sql : '',
+      askAnswer: s.ask ? s.ask.answer : '',
+      onRun: () => this.run(),
+      onReset: () => this.reset(),
+      onAsk: () => this.ask(),
+      onAskKey: (e) => { if (e.key === 'Enter') this.ask(); },
+      setTabData: () => this.setTab('data'),
+      setTabNet: () => this.setTab('net'),
+      setInput: (el) => { this.input = el; },
+      chartStars: this.buildChart(this.stars, 332, 158),
+      chartDownloads: this.buildChart(this.downloads, 332, 158),
+      chartInternet: this.buildChart(this.internet, 332, 158),
+    };
+  }
+}
+</script>
+</body>
+</html>
