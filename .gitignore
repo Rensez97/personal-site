@@ -9,6 +9,10 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+*:Zone.Identifier
+
+# Reference material dropped in from other repos (has its own nested .git)
+docs/examples/homebase-infra/
 
 # Node / build output (for the future Astro build)
 node_modules/

@@ -185,7 +185,7 @@
     <p style="font-family:'Source Serif 4';font-weight:500;font-size:34px;line-height:1.28;letter-spacing:-.01em;color:#0F7A68;margin:0 0 34px;max-width:20ch;">A data platform light enough to fit inside a web page.</p>
     <div class="two-col">
       <p style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">There's no server doing this. No database, no API behind a login, nothing to page me at 3am.</p>
-      <p style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">Every morning a GitHub Action runs a small <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline and commits one Parquet file. The site is static — served from my own <strong style="font-weight:600;">Hetzner</strong> box, behind <strong style="font-weight:600;">Cloudflare</strong>. When you pressed Run, that Parquet loaded into <strong style="font-weight:600;">DuckDB compiled to WebAssembly</strong>, and every query executed right here, in your browser.</p>
+      <p style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">Every morning a <strong style="font-weight:600;">GitHub Action</strong> runs a small <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline and commits one Parquet file. The site is static — served from <strong style="font-weight:600;">Cloudflare's edge</strong>. When you pressed Run, that Parquet loaded into <strong style="font-weight:600;">DuckDB compiled to WebAssembly</strong>, and every query executed right here, in your browser. My heavier services — scrapers, a little CRM — run on my own <strong style="font-weight:600;">Hetzner</strong> box behind WireGuard. Right tool, right weight, for each job.</p>
     </div>
   </div>
 </section>
