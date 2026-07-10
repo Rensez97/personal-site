@@ -7,64 +7,100 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;}
-  body{margin:0;background:#F4EFE4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#221D16;-webkit-font-smoothing:antialiased;}
-  a{color:#0F7A68;text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  @media (max-width:640px){
-    .nav-links{display:none !important;}
-    .pad-x{padding-left:24px !important;padding-right:24px !important;}
-    .hero-h1{font-size:44px !important;}
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
+<link rel="alternate" hreflang="en" href="https://rensevanderzee.nl/blog.html">
+<link rel="alternate" hreflang="nl" href="https://rensevanderzee.nl/blog.html?lang=nl">
+<link rel="alternate" hreflang="x-default" href="https://rensevanderzee.nl/blog.html">
 </head>
 <body>
 
 <!-- TOP NAV -->
-<nav class="pad-x" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 44px;background:rgba(244,239,228,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4DCCC;">
-  <a href="index.html" style="font-family:'Source Serif 4';font-weight:600;font-size:16px;color:#221D16;text-decoration:none;">Rense van der Zee</a>
-  <div class="nav-links" style="display:flex;gap:22px;font-family:'IBM Plex Mono';font-size:12px;">
-    <a href="index.html#widget" style="color:#5A5348;">The stack</a>
-    <a href="index.html#colophon" style="color:#5A5348;">How it works</a>
-    <a href="index.html#about" style="color:#5A5348;">About</a>
-    <a href="blog.html" style="color:#0F7A68;">Writing</a>
-    <a href="index.html#projects" style="color:#5A5348;">Projects</a>
-    <a href="index.html#contact" style="color:#5A5348;">Contact</a>
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-brand">Rense van der Zee</a>
+    <div class="nav-links">
+      <a href="/#widget" data-i18n="nav.stack">The stack</a>
+      <a href="/#about" data-i18n="nav.about">About</a>
+      <a href="blog.html" class="active" data-i18n="nav.writing">Writing</a>
+      <a href="more.html" data-i18n="nav.more">More</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language / Taal">
+        <button data-lang="en" aria-pressed="true" title="English">
+          <svg viewBox="0 0 60 30" width="19" height="10" aria-hidden="true">
+            <clipPath id="gbS"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+            <clipPath id="gbT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+            <g clip-path="url(#gbS)">
+              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#gbT)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>EN
+        </button>
+        <button data-lang="nl" aria-pressed="false" title="Nederlands">
+          <svg viewBox="0 0 21 15" width="19" height="10" aria-hidden="true">
+            <rect width="21" height="15" fill="#fff"/>
+            <rect width="21" height="5" fill="#AE1C28"/>
+            <rect y="10" width="21" height="5" fill="#21468B"/>
+          </svg>NL
+        </button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </div>
-  <a href="#" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#0F7A68;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:5px 12px;white-space:nowrap;text-decoration:none;">RSS</a>
 </nav>
 
 <!-- HERO -->
-<header class="pad-x" style="padding:88px 72px 44px;max-width:900px;">
-  <div style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Writing</div>
-  <h1 class="hero-h1" style="font-family:'Source Serif 4';font-weight:600;font-size:62px;line-height:1;letter-spacing:-.018em;margin:18px 0 0;color:#221D16;">Notes</h1>
-  <p style="font-family:'Source Serif 4';font-weight:400;font-size:23px;line-height:1.44;color:#5A5348;max-width:34ch;margin:22px 0 0;">Notes on data engineering — mostly about doing more with less. Occasional, not scheduled.</p>
-  <div style="margin-top:24px;font-family:'IBM Plex Mono';font-size:12.5px;color:#8C8476;">First one soon. <a href="#" style="color:#0F7A68;">Subscribe via RSS →</a></div>
+<header class="container" style="padding-top:88px;padding-bottom:44px;">
+  <div style="max-width:820px;">
+    <div data-i18n="wr.eyebrow" style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Writing</div>
+    <h1 class="hero-h1" data-i18n="wr.h1" style="font-family:'Source Serif 4';font-weight:600;font-size:62px;line-height:1;letter-spacing:-.018em;margin:18px 0 0;color:#221D16;">Notes</h1>
+    <p data-i18n="wr.sub" style="font-family:'Source Serif 4';font-weight:400;font-size:23px;line-height:1.44;color:#5A5348;max-width:34ch;margin:22px 0 0;">Notes on data engineering — mostly about doing more with less. Occasional, not scheduled.</p>
+    <div data-i18n="wr.soon" style="margin-top:24px;font-family:'IBM Plex Mono';font-size:12.5px;color:#8C8476;">First one soon.</div>
+  </div>
 </header>
 
 <!-- NOTES LIST -->
-<section class="pad-x" style="border-top:1px solid #E4DCCC;padding:20px 72px 40px;">
+<section class="container" style="border-top:1px solid #E4DCCC;padding-top:8px;padding-bottom:40px;">
   <article style="display:grid;grid-template-columns:1fr auto;gap:12px 28px;align-items:baseline;border-bottom:1px solid #E4DCCC;padding:34px 0;">
     <div style="max-width:62ch;">
-      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.14;letter-spacing:-.01em;margin:0;color:#221D16;">The open-source stack behind this site</h2>
-      <p style="font-size:16px;line-height:1.6;color:#5A5348;margin:10px 0 0;">How this page runs itself — a dlt → dbt → DuckDB pipeline in GitHub Actions, DuckDB-WASM in the browser, a static site on the edge, and the private box behind it. Every piece open and reproducible.</p>
+      <h2 data-i18n="note.title" style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.14;letter-spacing:-.01em;margin:0;color:#221D16;">The open-source stack behind this site</h2>
+      <p data-i18n="note.p" style="font-size:16px;line-height:1.6;color:#5A5348;margin:10px 0 0;">How this page runs itself — a dlt → dbt → DuckDB pipeline in GitHub Actions, DuckDB-WASM in the browser, a static site on the edge, and the private box behind it. Every piece open and reproducible.</p>
     </div>
-    <div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;white-space:nowrap;text-align:right;">in&nbsp;progress</div>
+    <div data-i18n="note.status" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;white-space:nowrap;text-align:right;">in&nbsp;progress</div>
   </article>
 </section>
 
 <!-- FOOTER -->
-<section class="pad-x" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:40px 72px;">
+<section class="container" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding-top:40px;padding-bottom:40px;">
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-    <a href="index.html" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← Home</a>
+    <a href="/" data-i18n="foot.home" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← Home</a>
     <div style="display:flex;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;">
-      <a href="#" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
-      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
-      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">RSS</a>
-      <a href="more.html" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+      <a href="https://github.com/Rensez97" target="_blank" rel="noopener" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="https://www.linkedin.com/in/rensevanderzee" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="more.html" data-i18n="foot.more" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
     </div>
   </div>
 </section>
+
+<script>
+window.I18N_NL = {
+  'nav.stack':'De stack', 'nav.about':'Over mij', 'nav.writing':'Schrijven',
+  'nav.more':'Meer', 'nav.contact':'Contact',
+  'wr.eyebrow':'Schrijven',
+  'wr.h1':'Notities',
+  'wr.sub':'Notities over data engineering — vooral over meer doen met minder. Af en toe, niet volgens schema.',
+  'wr.soon':'De eerste komt binnenkort.',
+  'note.title':'De open-source stack achter deze site',
+  'note.p':'Hoe deze pagina zichzelf draait — een dlt → dbt → DuckDB-pipeline in GitHub Actions, DuckDB-WASM in de browser, een statische site op de edge, en de private box erachter. Elk onderdeel open en reproduceerbaar.',
+  'note.status':'in&nbsp;wording',
+  'foot.home':'← Home',
+  'foot.more':'iets meer over mij →',
+};
+</script>
+<script src="app.js"></script>
 </body>
 </html>
