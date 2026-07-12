@@ -10,6 +10,15 @@ main = "index.js"
 compatibility_date = "2026-07-01"
 workers_dev = false   # no public URL; reachable via service binding only
 
+# Sender + recipients live here (single source of truth). MAIL_TO is a
+# comma-separated list; every address must be a VERIFIED Email Routing
+# destination or that send is rejected.
+[vars]
+MAIL_FROM = "site@rensevanderzee.nl"
+MAIL_TO = "rensevdzee@gmail.com,rensevdzee@hotmail.com"
+
+# No destination_address restriction, so NOTIFY may send to any verified
+# destination (both addresses above). Safe: this Worker has no public URL.
 send_email = [
-  { name = "NOTIFY", destination_address = "rensevdzee@hotmail.com" }
+  { name = "NOTIFY" }
 ]

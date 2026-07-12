@@ -4,8 +4,11 @@
 
 import { EmailMessage } from "cloudflare:email";
 
-const FROM = "site@rensevanderzee.nl";
-const TO = "rensevdzee@hotmail.com"; // must match a verified destination address
+// FROM and recipients come from wrangler.toml [vars] so the addresses live in
+// exactly one place (no duplication with the send_email binding config).
+// MAIL_TO is a comma-separated list — each recipient must be a verified Email
+// Routing destination. Note: Outlook/Hotmail often defers Cloudflare's shared
+// sending IPs on reputation (451 4.7.650); Gmail is the reliable inbox.
 
 export default {
   async fetch(request, env) {
@@ -21,15 +24,31 @@ export default {
     const message = String(body.message || "").slice(0, 5000);
     if (!name || !email || !message) return new Response("bad request", { status: 400 });
 
-    const raw = buildRaw({
-      from: FROM,
-      to: TO,
-      replyTo: email,
-      subject: `Site contact: ${name}`,
-      text: `From: ${name} <${email}>\n\n${message}\n`,
+    const from = env.MAIL_FROM;
+    const recipients = (env.MAIL_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
+
+    // Send to each recipient independently so one provider rejecting (e.g.
+    // Hotmail's 451) never blocks delivery to the others.
+    const results = await Promise.allSettled(
+      recipients.map((to) => {
+        const raw = buildRaw({
+          from,
+          to,
+          replyTo: email,
+          subject: `Site contact: ${name}`,
+          text: `From: ${name} <${email}>\n\n${message}\n`,
+        });
+        return env.NOTIFY.send(new EmailMessage(from, to, raw));
+      })
+    );
+    results.forEach((r, i) => {
+      if (r.status === "rejected") console.error(`send to ${recipients[i]} failed:`, String(r.reason));
     });
-    await env.NOTIFY.send(new EmailMessage(FROM, TO, raw));
-    return new Response("ok");
+
+    // As long as at least one recipient accepted, report success.
+    return results.some((r) => r.status === "fulfilled")
+      ? new Response("ok")
+      : new Response("all sends failed", { status: 502 });
   },
 };
 
