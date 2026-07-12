@@ -37,12 +37,18 @@ export async function onRequestPost({ request, env }) {
   }
 
   if (env.EMAIL) {
-    // Best effort: the message is already safe in D1 if this fails.
-    await env.EMAIL.fetch("https://site-email-notify/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
-    }).catch(() => {});
+    // Best effort: the message is already safe in D1 if this fails. Log any
+    // failure so it's visible in `wrangler tail` / Workers logs.
+    try {
+      const r = await env.EMAIL.fetch("https://site-email-notify/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (!r.ok) console.error("EMAIL notify failed:", r.status, await r.text());
+    } catch (e) {
+      console.error("EMAIL notify threw:", e && e.stack ? e.stack : String(e));
+    }
   }
 
   return json({ ok: true });

@@ -13,6 +13,10 @@ name = "personal-site"
 main = "worker/index.js"
 compatibility_date = "2026-07-01"
 
+# Keep Worker logs queryable in the dashboard (CLI `wrangler tail` is flaky).
+[observability]
+enabled = true
+
 [assets]
 directory = "./site"
 binding = "ASSETS"
