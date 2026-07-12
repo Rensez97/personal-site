@@ -1,0 +1,29 @@
+# Cloudflare PAGES configuration (not a Worker). The `pages_build_output_dir`
+# field is what marks this as a Pages project — Cloudflare keeps deploying it
+# the Pages way (`wrangler pages deploy`), NOT `wrangler deploy`.
+#
+# Why this file exists: the dashboard "Add binding" button silently fails for
+# this project, so bindings are declared here instead (an officially supported
+# path — see docs/runbook.md §I2). This file becomes the source of truth for
+# bindings; you can no longer edit them in the dashboard, which is fine.
+#
+# ⚠️  Cloudflare's autoconfig bot may open a PR offering to migrate to a unified
+#     Worker (wrangler.jsonc, deploy command `npx wrangler deploy`). DO NOT MERGE
+#     it — it breaks Pages Functions' file-based routing (functions/api/*).
+#     Close that PR.
+
+name = "personal-site"
+pages_build_output_dir = "site"
+compatibility_date = "2026-07-01"
+
+# D1 database for the contact form + run counter (functions/api/*).
+[[d1_databases]]
+binding = "DB"
+database_name = "site-db"
+database_id = "2bd3fd17-686e-4751-adc3-f2640879d522"
+
+# Service binding to the notification Worker (workers/email-notify/), which
+# holds the send_email binding Pages Functions can't hold themselves.
+[[services]]
+binding = "EMAIL"
+service = "site-email-notify"
