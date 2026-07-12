@@ -38,7 +38,7 @@ export async function onRequestPost({ request, env }) {
 
   if (env.EMAIL) {
     // Best effort: the message is already safe in D1 if this fails. Log any
-    // failure so it's visible in `wrangler tail` / Workers logs.
+    // failure so it shows up in the Worker's logs.
     try {
       const r = await env.EMAIL.fetch("https://site-email-notify/", {
         method: "POST",

@@ -28,9 +28,11 @@ export default {
     const recipients = (env.MAIL_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
 
     // Send to each recipient independently so one provider rejecting (e.g.
-    // Hotmail's 451) never blocks delivery to the others.
+    // Hotmail's 451) never blocks delivery to the others. The async wrapper
+    // matters: EmailMessage/send can throw synchronously, and a sync throw
+    // inside .map() would escape Promise.allSettled and crash the Worker.
     const results = await Promise.allSettled(
-      recipients.map((to) => {
+      recipients.map(async (to) => {
         const raw = buildRaw({
           from,
           to,
@@ -45,7 +47,8 @@ export default {
       if (r.status === "rejected") console.error(`send to ${recipients[i]} failed:`, String(r.reason));
     });
 
-    // As long as at least one recipient accepted, report success.
+    // As long as one recipient accepted, report success — the message is in D1
+    // regardless, and Hotmail may defer where Gmail delivers.
     return results.some((r) => r.status === "fulfilled")
       ? new Response("ok")
       : new Response("all sends failed", { status: 502 });

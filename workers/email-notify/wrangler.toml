@@ -1,14 +1,29 @@
-# Tiny notification Worker — exists only because Pages Functions can't hold a
-# send_email binding themselves. The contact form's Pages Function reaches it
-# through a service binding (EMAIL); it is not publicly routable.
+# Tiny notification Worker — exists only because the site Worker can't hold a
+# send_email binding itself. The contact form reaches it through a service
+# binding (EMAIL); it is not publicly routable.
 #
-# Deploy once: cd workers/email-notify && npx wrangler deploy
-# Prereq: Email Routing enabled on the zone, destination address verified.
+# Deploy: cd workers/email-notify && npx wrangler deploy
+# Prereq: Email Routing enabled on the zone, every MAIL_TO address verified.
+#
+# NOTE ON TOML ORDER: `send_email` is a TOP-LEVEL key and must appear BEFORE any
+# [table] header. If it sits below [vars], TOML nests it inside that table and it
+# silently becomes a plain variable instead of a binding — env.NOTIFY is then
+# undefined and the Worker throws (error 1101).
 
 name = "site-email-notify"
 main = "index.js"
 compatibility_date = "2026-07-01"
 workers_dev = false   # no public URL; reachable via service binding only
+
+# No destination_address restriction, so NOTIFY may send to any verified
+# destination (both addresses in MAIL_TO). Safe: this Worker has no public URL.
+send_email = [
+  { name = "NOTIFY" }
+]
+
+# Keep this Worker's logs queryable in the dashboard.
+[observability]
+enabled = true
 
 # Sender + recipients live here (single source of truth). MAIL_TO is a
 # comma-separated list; every address must be a VERIFIED Email Routing
@@ -16,9 +31,3 @@ workers_dev = false   # no public URL; reachable via service binding only
 [vars]
 MAIL_FROM = "site@rensevanderzee.nl"
 MAIL_TO = "rensevdzee@gmail.com,rensevdzee@hotmail.com"
-
-# No destination_address restriction, so NOTIFY may send to any verified
-# destination (both addresses above). Safe: this Worker has no public URL.
-send_email = [
-  { name = "NOTIFY" }
-]
