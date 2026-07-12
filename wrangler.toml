@@ -1,20 +1,21 @@
-# Cloudflare PAGES configuration (not a Worker). The `pages_build_output_dir`
-# field is what marks this as a Pages project — Cloudflare keeps deploying it
-# the Pages way (`wrangler pages deploy`), NOT `wrangler deploy`.
+# Cloudflare WORKER (with static assets). This project deploys via
+# `wrangler deploy` (Cloudflare migrated it from Pages to a Worker — the
+# dashboard shows "Version command" and a broken bindings button, both
+# Worker-model tells). Rather than fight that, we lean into it:
 #
-# Why this file exists: the dashboard "Add binding" button silently fails for
-# this project, so bindings are declared here instead (an officially supported
-# path — see docs/runbook.md §I2). This file becomes the source of truth for
-# bindings; you can no longer edit them in the dashboard, which is fine.
-#
-# ⚠️  Cloudflare's autoconfig bot may open a PR offering to migrate to a unified
-#     Worker (wrangler.jsonc, deploy command `npx wrangler deploy`). DO NOT MERGE
-#     it — it breaks Pages Functions' file-based routing (functions/api/*).
-#     Close that PR.
+#   - ./site is served directly by Cloudflare's edge static assets.
+#   - worker/index.js runs ONLY for the /api/* routes, reusing the handlers
+#     in functions/api/* so the logic isn't duplicated.
+#   - Bindings are declared here (the dashboard "Add binding" button silently
+#     fails for this project). See docs/runbook.md §I2.
 
 name = "personal-site"
-pages_build_output_dir = "site"
+main = "worker/index.js"
 compatibility_date = "2026-07-01"
+
+[assets]
+directory = "./site"
+binding = "ASSETS"
 
 # D1 database for the contact form + run counter (functions/api/*).
 [[d1_databases]]
@@ -23,7 +24,7 @@ database_name = "site-db"
 database_id = "2bd3fd17-686e-4751-adc3-f2640879d522"
 
 # Service binding to the notification Worker (workers/email-notify/), which
-# holds the send_email binding Pages Functions can't hold themselves.
+# holds the send_email binding this Worker can't hold itself.
 [[services]]
 binding = "EMAIL"
 service = "site-email-notify"
