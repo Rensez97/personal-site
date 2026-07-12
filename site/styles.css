@@ -1,0 +1,89 @@
+/* =========================================================================
+   Shared design system for rensevanderzee.nl
+   Element-level styling still lives inline in the HTML; this file holds the
+   reset, palette-bearing base, layout primitives, the nav, and responsive
+   rules so all pages share one frame. Linked by every page.
+   ========================================================================= */
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#F4EFE4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#221D16;-webkit-font-smoothing:antialiased;}
+a{color:#0F7A68;text-decoration:none;}
+a:hover{text-decoration:underline;}
+input:focus,textarea:focus{border-color:#0F7A68 !important;}
+button{font:inherit;}
+a:focus-visible,button:focus-visible{outline:2px solid #0F7A68;outline-offset:2px;border-radius:4px;}
+
+@keyframes nodeOn{from{border-color:#E4DCCC;color:#8C8476;background:#FBF8F1;}to{border-color:#0F7A68;color:#0F7A68;background:#EAF3F0;}}
+@keyframes barflow{from{width:0%;}to{width:100%;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@keyframes caret{50%{opacity:0;}}
+
+.img-slot{width:100%;height:100%;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;background:#E4DCCC;color:#8C8476;font-family:'IBM Plex Mono';font-size:12px;padding:20px;border:1px dashed #B8AF9C;}
+[hidden]{display:none !important;}
+
+/* --- one container width for the whole site --- */
+.container{max-width:1160px;margin:0 auto;padding-left:clamp(24px,6vw,72px);padding-right:clamp(24px,6vw,72px);}
+
+/* --- top navigation (shared) --- */
+.site-nav{position:sticky;top:0;z-index:20;background:rgba(244,239,228,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4DCCC;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px;}
+.nav-brand{font-family:'Source Serif 4';font-weight:600;font-size:16px;color:#221D16;}
+.nav-brand:hover{text-decoration:none;}
+.nav-links{display:flex;gap:22px;font-family:'IBM Plex Mono';font-size:12px;}
+.nav-links a{color:#5A5348;}
+.nav-links a.active{color:#0F7A68;}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-badge{font-family:'IBM Plex Mono';font-size:11.5px;color:#0F7A68;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:5px 12px;white-space:nowrap;}
+.nav-badge:hover{text-decoration:none;}
+
+/* hamburger — hidden on desktop, shown on mobile */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:4px;width:34px;height:32px;background:transparent;border:1px solid #E4DCCC;border-radius:8px;cursor:pointer;padding:0 8px;}
+.nav-toggle span{display:block;height:2px;width:100%;background:#5A5348;border-radius:2px;transition:transform .2s,opacity .2s;}
+.site-nav.open .nav-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.site-nav.open .nav-toggle span:nth-child(2){opacity:0;}
+.site-nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+/* --- language toggle --- */
+.lang-toggle{display:inline-flex;border:1px solid #E4DCCC;border-radius:20px;overflow:hidden;background:#FBF8F1;}
+.lang-toggle button{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;padding:5px 11px;font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;transition:background .15s,color .15s;}
+.lang-toggle button svg{border-radius:2px;box-shadow:0 0 0 1px rgba(34,29,22,.08);display:block;}
+.lang-toggle button[aria-pressed="true"]{background:#EAF3F0;color:#0F7A68;}
+.lang-toggle button[aria-pressed="false"]{filter:grayscale(.55);opacity:.72;}
+.lang-toggle button[aria-pressed="false"]:hover{opacity:1;filter:none;}
+
+/* --- responsive grids (default = desktop) --- */
+.hero-grid{display:grid;grid-template-columns:1.08fr 1fr;gap:48px;align-items:center;min-height:480px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.about-grid{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start;}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* Tablet: drop 3-up card grids to 2-up */
+@media (max-width:900px){
+  .card-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* Mobile: stack layout + hamburger nav */
+@media (max-width:640px){
+  .hero-grid{grid-template-columns:1fr;gap:0;min-height:auto;}
+  .hero-grid .hero-media{min-height:260px;margin-bottom:40px;} /* name first, terminal after */
+  .two-col{grid-template-columns:1fr;gap:20px;}
+  .about-grid{grid-template-columns:1fr;gap:32px;}
+  .about-grid .about-media{max-width:260px;}
+  .card-grid{grid-template-columns:1fr;}
+  .hero-h1{font-size:44px !important;}
+  .section-h2{font-size:30px !important;}
+
+  .nav-toggle{display:flex;}
+  .nav-badge{display:none;}                              /* homepage gimmick, desktop only */
+  .nav-links{
+    position:absolute;left:0;right:0;top:100%;
+    flex-direction:column;gap:0;
+    background:#F4EFE4;border-bottom:1px solid #E4DCCC;
+    box-shadow:0 14px 26px -18px rgba(34,29,22,.5);
+    padding:6px 0;display:none;
+  }
+  .site-nav.open .nav-links{display:flex;}
+  .nav-links a{padding:13px clamp(24px,6vw,72px);}
+  .nav-links a:hover{background:#FBF8F1;text-decoration:none;}
+}

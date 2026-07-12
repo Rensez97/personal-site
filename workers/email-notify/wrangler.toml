@@ -1,0 +1,15 @@
+# Tiny notification Worker — exists only because Pages Functions can't hold a
+# send_email binding themselves. The contact form's Pages Function reaches it
+# through a service binding (EMAIL); it is not publicly routable.
+#
+# Deploy once: cd workers/email-notify && npx wrangler deploy
+# Prereq: Email Routing enabled on the zone, destination address verified.
+
+name = "site-email-notify"
+main = "index.js"
+compatibility_date = "2026-07-01"
+workers_dev = false   # no public URL; reachable via service binding only
+
+send_email = [
+  { name = "NOTIFY", destination_address = "rensevdzee@hotmail.com" }
+]

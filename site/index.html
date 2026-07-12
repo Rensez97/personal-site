@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rense van der Zee — Data engineer</title>
+<meta name="description" content="Data engineer in Groningen. I like data stacks that stay small and boring — so I built this site to actually run one: a dlt → dbt → DuckDB pipeline in CI, refreshed daily.">
+<meta property="og:title" content="Rense van der Zee — Data engineer">
+<meta property="og:description" content="A data platform light enough to fit inside a web page — dlt → dbt → DuckDB, refreshed every morning by CI.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rensevanderzee.nl/">
+<link rel="canonical" href="https://rensevanderzee.nl/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23F4EFE4'/%3E%3Ccircle cx='50' cy='50' r='26' fill='%230F7A68'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="alternate" hreflang="en" href="https://rensevanderzee.nl/">
+<link rel="alternate" hreflang="nl" href="https://rensevanderzee.nl/?lang=nl">
+<link rel="alternate" hreflang="x-default" href="https://rensevanderzee.nl/">
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-brand">Rense van der Zee</a>
+    <div class="nav-links">
+      <a href="/#widget" data-i18n="nav.stack">The stack</a>
+      <a href="/#about" data-i18n="nav.about">About</a>
+      <a href="blog.html" data-i18n="nav.writing">Writing</a>
+      <a href="more.html" data-i18n="nav.more">More</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language / Taal">
+        <button data-lang="en" aria-pressed="true" title="English">
+          <svg viewBox="0 0 60 30" width="19" height="10" aria-hidden="true">
+            <clipPath id="gbS"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+            <clipPath id="gbT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+            <g clip-path="url(#gbS)">
+              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#gbT)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>EN
+        </button>
+        <button data-lang="nl" aria-pressed="false" title="Nederlands">
+          <svg viewBox="0 0 21 15" width="19" height="10" aria-hidden="true">
+            <rect width="21" height="15" fill="#fff"/>
+            <rect width="21" height="5" fill="#AE1C28"/>
+            <rect y="10" width="21" height="5" fill="#21468B"/>
+          </svg>NL
+        </button>
+      </div>
+      <span class="nav-badge">data · <span data-updated>…</span></span>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="top" style="min-height:480px;">
+  <div class="container hero-grid">
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:56px 0;">
+      <div style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Data engineer · Groningen</div>
+      <h1 class="hero-h1" style="font-family:'Source Serif 4';font-weight:600;font-size:60px;line-height:1;letter-spacing:-.018em;margin:20px 0 0;color:#221D16;">Rense van der Zee</h1>
+      <p data-i18n="hero.sub" style="font-family:'Source Serif 4';font-weight:400;font-size:24px;line-height:1.42;color:#5A5348;max-width:24ch;margin:24px 0 0;">I like data stacks that stay small and boring — so I built this site to actually run one.</p>
+      <div style="margin-top:30px;display:inline-flex;align-items:center;gap:11px;border:1px solid #CFE3DD;background:#EAF3F0;border-radius:7px;padding:13px 17px;align-self:flex-start;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#0F7A68;box-shadow:0 0 0 4px rgba(15,122,104,.16);flex:none;"></span>
+        <span data-i18n="hero.badge" style="font-family:'IBM Plex Mono';font-size:13px;color:#0F7A68;line-height:1.3;">Everything below is drawn from data a pipeline refreshed this morning · <span data-updated>…</span></span>
+      </div>
+    </div>
+    <div class="hero-media" style="position:relative;min-height:380px;border-radius:12px;overflow:hidden;background:#FBF8F1;border:1px solid #E4DCCC;box-shadow:0 20px 40px -30px rgba(34,29,22,.4);display:flex;flex-direction:column;padding:20px 22px;" aria-label="The SQL query this morning's pipeline ran to rank the top data tools by GitHub stars, with its result.">
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">
+        <span style="display:flex;gap:5px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#E4DCCC;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#E4DCCC;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#CFE3DD;"></span>
+        </span>
+        <span data-i18n="hero.term" style="margin-left:auto;">stars_current · built this morning in CI</span>
+      </div>
+      <pre style="margin:18px 0 0;font-family:'IBM Plex Mono';font-size:13px;line-height:1.65;color:#221D16;white-space:pre-wrap;min-height:126px;"><code data-hero-sql></code><span data-hero-caret style="display:inline-block;width:7px;height:15px;background:#0F7A68;vertical-align:-2px;margin-left:1px;animation:caret 1s steps(1) infinite;"></span></pre>
+      <div style="margin-top:auto;">
+        <div style="border-top:1px solid #E4DCCC;"></div>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:12px;margin-top:10px;">
+          <thead>
+            <tr style="color:#8C8476;text-align:left;">
+              <th style="font-weight:500;padding:0 0 6px;">tool</th>
+              <th style="font-weight:500;padding:0 0 6px;text-align:right;">stars</th>
+            </tr>
+          </thead>
+          <tbody data-hero-rows></tbody>
+        </table>
+        <div data-hero-meta style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:10px;opacity:0;transition:opacity .4s;">
+          <span data-hero-rowcount>3 rows</span><span data-hero-elapsed></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WIDGET band -->
+<section id="widget" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 0;scroll-margin-top:70px;">
+  <div class="container">
+    <div style="max-width:62ch;">
+      <div data-i18n="w.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:14px;">The centerpiece</div>
+      <h2 class="section-h2" data-i18n="w.h2" style="font-family:'Source Serif 4';font-weight:600;font-size:38px;line-height:1.06;letter-spacing:-.012em;margin:0 0 14px;color:#221D16;">The modern data stack, measured</h2>
+      <p data-i18n="w.p1" style="font-size:16.5px;line-height:1.7;color:#2b261f;margin:0 0 10px;">Everyone has opinions about which tools are winning. This is the data.</p>
+      <p data-i18n="w.p2" style="font-size:16.5px;line-height:1.7;color:#5A5348;margin:0 0 26px;">Stars are mindshare. Downloads are usage. Here's both — for the tools I actually build with — refreshed every morning by a pipeline that runs while I sleep.</p>
+    </div>
+    <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;overflow:hidden;box-shadow:0 16px 34px -24px rgba(34,29,22,.34);max-width:920px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #E4DCCC;background:#FBF8F1;padding:13px 18px;">
+        <span data-i18n="tab.data" style="font-family:'IBM Plex Sans';font-size:13px;font-weight:500;color:#221D16;">The modern data stack</span>
+        <a data-i18n="w.logs" href="https://github.com/Rensez97/personal-site/actions/workflows/pipeline.yml" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono';font-size:11px;">run logs ↗</a>
+      </div>
+
+      <div data-panel="idle" style="padding:32px 26px 30px;">
+        <div data-i18n="idle.label" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:20px;">Pipeline · idle</div>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:28px;">
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Extract <span style="color:#8C8476;">· dlt</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Transform <span style="color:#8C8476;">· dbt</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Load <span style="color:#8C8476;">· DuckDB</span></span>
+          <span style="color:#B8AF9C;">→</span>
+          <span data-i18n="idle.chip4" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;background:#FBF8F1;border:1px solid #E4DCCC;padding:8px 11px;border-radius:6px;white-space:nowrap;">Commit <span style="color:#8C8476;">· parquet + json</span></span>
+        </div>
+        <button data-run style="display:inline-flex;align-items:center;gap:10px;background:#0F7A68;color:#F4EFE4;border:none;font-family:'IBM Plex Sans';font-weight:600;font-size:14px;padding:12px 20px;border-radius:7px;cursor:pointer;">
+          <span style="display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;"></span><span data-i18n="idle.run">Replay this morning's run</span>
+        </button>
+        <div data-i18n="idle.note" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;margin-top:14px;line-height:1.5;">The real run happened in CI while I slept. This replays it — then loads the Parquet it committed into DuckDB-WASM and runs the queries right here, in your browser. First run downloads the query engine (~7 MB, cached after that).</div>
+      </div>
+
+      <div data-panel="running" hidden style="padding:32px 26px 30px;">
+        <div data-i18n="run.label" style="font-family:'IBM Plex Mono';font-size:12px;color:#0F7A68;margin-bottom:20px;">Pipeline · running</div>
+        <div style="display:flex;gap:12px;">
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease 0s forwards;"><div style="font-size:13px;font-weight:500;">Extract</div><div style="font-size:10px;margin-top:4px;">dlt · github+pypi</div></div>
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease .5s forwards;"><div style="font-size:13px;font-weight:500;">Transform</div><div style="font-size:10px;margin-top:4px;">dbt · models</div></div>
+          <div style="flex:1;border:1px solid #E4DCCC;background:#FBF8F1;color:#8C8476;padding:14px 8px;border-radius:7px;text-align:center;font-family:'IBM Plex Mono';animation:nodeOn .5s ease 1s forwards;"><div style="font-size:13px;font-weight:500;">Load</div><div style="font-size:10px;margin-top:4px;">duckdb · marts</div></div>
+        </div>
+        <div style="height:4px;background:#E4DCCC;border-radius:2px;overflow:hidden;margin-top:20px;"><div style="height:100%;background:#0F7A68;animation:barflow 1.7s linear forwards;"></div></div>
+        <div data-i18n="run.note" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;margin-top:12px;">streaming parquet → duckdb-wasm …</div>
+      </div>
+
+      <div data-panel="loaded" hidden style="padding:28px 26px;animation:fadeUp .5s ease;">
+        <div style="display:flex;gap:26px;flex-wrap:wrap;">
+          <div style="flex:1.4;min-width:280px;">
+            <div data-i18n="chart.downloads" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">PyPI downloads · per week (millions)</div>
+            <div data-chart="downloads"></div>
+            <div data-chart-range="downloads" style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:4px;"><span></span><span></span></div>
+            <div data-legend style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;"></div>
+          </div>
+          <div style="flex:1;min-width:220px;">
+            <div data-i18n="chart.stars" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">GitHub stars · today</div>
+            <div data-star-tiles style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+            <div data-i18n="chart.starsub" style="font-family:'IBM Plex Mono';font-size:10.5px;color:#B8AF9C;margin-top:10px;line-height:1.5;">Snapshotted daily by the pipeline — the history chart grows as the snapshots pile up.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px;border-top:1px solid #E4DCCC;padding-top:16px;">
+          <span style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;"><span data-i18n="loaded.src">pipeline run of</span> <span data-updated>…</span> · dlt → dbt → DuckDB<span data-engine style="color:#0F7A68;"></span> <a data-build hidden target="_blank" rel="noopener" style="font-size:11px;margin-left:6px;">build</a></span>
+          <button data-reset data-i18n="loaded.reset" style="background:transparent;border:1px solid #D8CFBD;color:#5A5348;font-family:'IBM Plex Mono';font-size:11.5px;padding:6px 12px;border-radius:6px;cursor:pointer;">Reset ↺</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON band -->
+<section id="colophon" style="background:#EAF3F0;border-top:1px solid #CFE3DD;border-bottom:1px solid #CFE3DD;padding:76px 0;scroll-margin-top:60px;">
+  <div class="container">
+    <div data-i18n="c.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#5E9084;margin-bottom:22px;">How this page works</div>
+    <p data-i18n="c.lead" style="font-family:'Source Serif 4';font-weight:500;font-size:34px;line-height:1.28;letter-spacing:-.01em;color:#0F7A68;margin:0 0 34px;max-width:20ch;">A data platform light enough to fit inside a web page.</p>
+    <div class="two-col">
+      <p data-i18n="c.p1" style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">There's no server doing this. No database, no API behind a login, nothing to page me at 3am.</p>
+      <p data-i18n="c.p2" style="font-size:16px;line-height:1.72;color:#26463f;margin:0;">Every morning a <strong style="font-weight:600;">GitHub Action</strong> runs a small <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline — extract, model, test — and commits one Parquet file plus the JSON this page draws. The site is static, served from <strong style="font-weight:600;">Cloudflare's edge</strong>; the pipeline, its models and its run logs are all public in the repo. And when you press Run up there, that Parquet loads into <strong style="font-weight:600;">DuckDB compiled to WebAssembly</strong> and every chart query executes right here, in your browser. My heavier, private services run on my own <strong style="font-weight:600;">Hetzner</strong> box behind WireGuard. Right tool, right weight, for each job.</p>
+    </div>
+    <div style="margin-top:38px;">
+      <div data-i18n="c.try" style="font-family:'IBM Plex Mono';font-size:12px;color:#5E9084;margin-bottom:10px;">Don't take my word for it — the data is a public endpoint. Query this site from your own terminal:</div>
+      <pre style="margin:0;font-family:'IBM Plex Mono';font-size:12.5px;line-height:1.65;color:#0F7A68;background:#FBF8F1;border:1px solid #CFE3DD;border-radius:8px;padding:14px 16px;overflow-x:auto;">duckdb -c "SELECT tool, value AS stars
+FROM read_parquet('https://rensevanderzee.nl/data/metrics.parquet')
+WHERE mart = 'stars_current' ORDER BY stars DESC;"</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT band -->
+<section id="about" style="border-top:1px solid #E4DCCC;padding:66px 0;scroll-margin-top:60px;">
+  <div class="container about-grid">
+    <div>
+      <div data-i18n="about.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:18px;">About</div>
+      <p data-i18n="about.p1" style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;">I'm currently building the data platform at <strong style="font-weight:600;color:#221D16;">Winparts</strong>, a fast-growing European car-parts retailer.</p>
+      <p data-i18n="about.p2" style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;">Before that I contributed to one of the largest data migrations in the Netherlands — the mortgage migration at <strong style="font-weight:600;color:#221D16;">a.s.r. / Aegon</strong> — through Sogeti, first as a data engineer and before that as a test analyst.</p>
+      <p data-i18n="about.p3" style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0 0 16px;max-width:60ch;"><strong style="font-weight:600;color:#221D16;">MSc</strong> in Technology &amp; Operations Management and <strong style="font-weight:600;color:#221D16;">BSc</strong> in Information Science, both from the <strong style="font-weight:600;color:#221D16;">University of Groningen</strong>.</p>
+      <p data-i18n="about.p4" style="font-size:16.5px;line-height:1.72;color:#2b261f;margin:0;max-width:60ch;">I have a bias: right-sized over heavyweight. By day that means <strong style="font-weight:600;color:#221D16;">BigQuery</strong> with dlt and dbt in containers — at Winparts' scale, a managed warehouse is the boring choice. This site runs the other end of the spectrum: a fully open-source stack light enough to live in CI. The point is never the tool; it's matching the weight of the platform to the size of the problem.</p>
+    </div>
+    <aside class="about-media" style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:22px 24px;">
+      <div data-i18n="glance.title" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;letter-spacing:.04em;margin-bottom:16px;">At a glance</div>
+      <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 16px;font-size:13.5px;line-height:1.5;">
+        <dt data-i18n="glance.based" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Based</dt><dd style="margin:0;color:#221D16;">Groningen, NL</dd>
+        <dt data-i18n="glance.now" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Now</dt><dd data-i18n="glance.now.v" style="margin:0;color:#221D16;">Data platform @ Winparts</dd>
+        <dt data-i18n="glance.reach" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Reaches for</dt><dd style="margin:0;color:#221D16;">DuckDB · dbt · dlt · Parquet</dd>
+        <dt data-i18n="glance.studied" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">Studied</dt><dd data-i18n="glance.studied.v" style="margin:0;color:#221D16;">MSc TOM · BSc Information Science, RUG</dd>
+        <dt data-i18n="glance.runs" style="font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;">This runs on</dt><dd style="margin:0;color:#221D16;">Cloudflare edge · Hetzner + WireGuard</dd>
+      </dl>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid #E4DCCC;font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;">
+        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#0F7A68;box-shadow:0 0 0 4px rgba(15,122,104,.16);margin-right:8px;"></span><span data-i18n="glance.open">Open to interesting data problems</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- HOW I WORK band -->
+<section id="approach" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 0;">
+  <div class="container">
+    <div data-i18n="hw.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:26px;">How I work</div>
+    <div class="card-grid">
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">01</div>
+        <h3 data-i18n="hw.c1.h" style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Right-sized, not rebuilt</h3>
+        <p data-i18n="hw.c1.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Most workloads don't need a cluster. DuckDB, Parquet and a single box go a long way — and when you do outgrow them, a managed warehouse like BigQuery is the boring next step. Right-sizing is the skill.</p>
+      </div>
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">02</div>
+        <h3 data-i18n="hw.c2.h" style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Pipelines in CI, not on call</h3>
+        <p data-i18n="hw.c2.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Scheduled jobs belong in version control and CI, where they're reviewable and reproducible — not on a server someone has to babysit at 3am.</p>
+      </div>
+      <div style="background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono';font-size:11px;color:#0F7A68;margin-bottom:10px;">03</div>
+        <h3 data-i18n="hw.c3.h" style="font-family:'Source Serif 4';font-weight:600;font-size:19px;line-height:1.2;color:#221D16;margin:0 0 8px;">Boring that stays up</h3>
+        <p data-i18n="hw.c3.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;">Fewer moving parts, clearer failure modes, less to page you about. The best infrastructure is the kind you stop thinking about.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING band -->
+<section id="writing" style="border-top:1px solid #E4DCCC;padding:66px 0;">
+  <div class="container">
+    <div style="margin-bottom:26px;">
+      <div data-i18n="wr.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:8px;">Writing</div>
+      <p data-i18n="wr.intro" style="font-size:15.5px;line-height:1.6;color:#5A5348;margin:0;max-width:52ch;">Occasional notes on data engineering — mostly about doing more with less. First one below; the rest arrive when they're worth reading.</p>
+    </div>
+    <a href="blog/the-stack-behind-this-site.html" style="text-decoration:none;display:block;background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:30px 28px;">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono';font-size:10.5px;color:#0F7A68;margin-bottom:12px;">
+        <span data-i18n="wr.badge" style="border:1px solid #CFE3DD;background:#EAF3F0;border-radius:20px;padding:3px 10px;">first note</span>
+        <span data-i18n="wr.progress" style="color:#8C8476;">12 July 2026 · 6 min read</span>
+      </div>
+      <h3 data-i18n="wr.title" style="font-family:'Source Serif 4';font-weight:600;font-size:24px;line-height:1.18;color:#221D16;margin:0 0 10px;max-width:30ch;">The open-source stack behind this site</h3>
+      <p data-i18n="wr.p" style="font-size:15px;line-height:1.65;color:#5A5348;margin:0;max-width:62ch;">A full write-up of how this page runs itself: a <strong style="font-weight:600;">dlt → dbt → DuckDB</strong> pipeline in GitHub Actions, one committed Parquet file, a static site on the edge, and the private box behind it — every piece open and reproducible.</p>
+      <span data-i18n="wr.read" style="display:inline-block;margin-top:16px;font-family:'IBM Plex Mono';font-size:12px;color:#0F7A68;">Read the note →</span>
+    </a>
+  </div>
+</section>
+
+<!-- PROJECTS band -->
+<section id="projects" style="border-top:1px solid #E4DCCC;padding:66px 0;scroll-margin-top:60px;">
+  <div class="container">
+    <div data-i18n="pr.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:26px;">Things I've built</div>
+    <div class="card-grid">
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">CasaCatcher</h3><p data-i18n="pr.c1.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Automated apartment hunting in Barcelona — scrapers, alerts, the works.</p><a href="https://casacatcher.com" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono';font-size:11.5px;">casacatcher.com ↗</a></div>
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 data-i18n="pr.c2.h" style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">The stack, measured</h3><p data-i18n="pr.c2.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">The live dashboard above — a data platform small enough to fit in a web page. Open source.</p><a href="https://github.com/Rensez97/personal-site" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono';font-size:11.5px;">source ↗</a></div>
+      <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;"><h3 style="font-family:'Source Serif 4';font-weight:600;font-size:20px;color:#221D16;margin:0;">Data Expo 2026</h3><p data-i18n="pr.c3.p" style="font-size:14.5px;line-height:1.6;color:#5A5348;margin:0;flex:1;">Speaking in Utrecht on lightweight data platforms — doing more with less.</p><span data-i18n="pr.c3.s" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#B8AF9C;">Slides · after the talk</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT band -->
+<section id="contact" style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:66px 0 40px;scroll-margin-top:60px;">
+  <div class="container">
+    <div style="max-width:560px;margin:0 auto;text-align:center;">
+      <div data-i18n="ct.eyebrow" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin-bottom:12px;">Get in touch</div>
+      <h2 data-i18n="ct.h2" style="font-family:'Source Serif 4';font-weight:600;font-size:32px;line-height:1.1;color:#221D16;margin:0 0 8px;">Leave a note</h2>
+      <p data-i18n="ct.line" style="font-size:15px;line-height:1.6;color:#5A5348;margin:0 0 24px;"><a href="mailto:info@rensevanderzee.nl" style="font-family:'IBM Plex Mono';font-size:13px;">info@rensevanderzee.nl</a> — or use the form below. I actually reply.</p>
+      <form data-contact-form novalidate style="position:relative;background:#F4EFE4;border:1px solid #E4DCCC;border-radius:10px;padding:22px;text-align:left;">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <label style="flex:1;min-width:160px;">
+            <span data-i18n="ct.name" style="display:block;font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">Name</span>
+            <input name="name" required maxlength="120" autocomplete="name" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
+          </label>
+          <label style="flex:1;min-width:160px;">
+            <span data-i18n="ct.email" style="display:block;font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">Email</span>
+            <input name="email" type="email" required maxlength="200" autocomplete="email" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;">
+          </label>
+        </div>
+        <label style="display:block;margin-top:12px;">
+          <span data-i18n="ct.msg" style="display:block;font-family:'IBM Plex Mono';font-size:11px;color:#8C8476;margin-bottom:6px;">Message</span>
+          <textarea name="message" required maxlength="5000" rows="4" style="width:100%;font-family:'IBM Plex Sans';font-size:14px;color:#221D16;background:#FBF8F1;border:1px solid #D8CFBD;border-radius:6px;padding:10px 12px;outline:none;resize:vertical;"></textarea>
+        </label>
+        <input name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;">
+        <button type="submit" data-i18n="ct.send" style="margin-top:14px;width:100%;background:#0F7A68;color:#F4EFE4;border:none;font-family:'IBM Plex Sans';font-weight:600;font-size:14px;padding:12px 20px;border-radius:7px;cursor:pointer;">Send →</button>
+        <div data-form-status role="status" aria-live="polite" style="font-family:'IBM Plex Mono';font-size:12px;margin-top:10px;min-height:1.2em;color:#8C8476;"></div>
+      </form>
+      <p data-i18n="ct.how" style="font-family:'Source Serif 4';font-style:italic;font-size:14.5px;color:#8C8476;margin:16px 0 0;">This form posts to a ~40-line function on Cloudflare's edge; submissions land in a SQLite database I query with SQL. Still nothing to babysit at 3am.</p>
+    </div>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;margin-top:40px;border-top:1px solid #E4DCCC;padding-top:26px;">
+      <a href="https://github.com/Rensez97" target="_blank" rel="noopener" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="https://www.linkedin.com/in/rensevanderzee" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="more.html" data-i18n="foot.more" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const state = { run: 'idle', engine: null, queries: 0, elapsed: 0 };
+  let runTimer = null;
+  const COLORS = { duckdb:'#0F7A68', polars:'#221D16', dbt:'#5A5348', dlt:'#8C8476' };
+  const EMPH = 'duckdb';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Data seam -----------------------------------------------------------
+  // ONE async boundary: loadMetrics(). It fetches data/metrics.json, the file
+  // the daily dlt->dbt->DuckDB Action commits (pipeline/ in the repo). The
+  // fallback below is a real snapshot of that pipeline's output — baked in for
+  // file:// and offline viewing — NOT invented numbers. When the DuckDB-WASM
+  // step lands, swap only the body of loadMetrics() to query metrics.parquet.
+  const FALLBACK = {"updated":"2026-07-11","hero":{"sql":"SELECT tool, stars\nFROM stars_current\nORDER BY stars DESC\nLIMIT 3;","rows":[{"tool":"duckdb","stars":39287},{"tool":"polars","stars":38979},{"tool":"dbt","stars":13411}],"elapsed_ms":17},"stars":[{"tool":"duckdb","stars":39287},{"tool":"polars","stars":38979},{"tool":"dbt","stars":13411},{"tool":"dlt","stars":5592}],"downloads_weekly":{"weeks":["2026-01-12","2026-01-19","2026-01-26","2026-02-02","2026-02-09","2026-02-16","2026-02-23","2026-03-02","2026-03-09","2026-03-16","2026-03-23","2026-03-30","2026-04-06","2026-04-13","2026-04-20","2026-04-27","2026-05-04","2026-05-11","2026-05-18","2026-05-25","2026-06-01","2026-06-15","2026-06-22","2026-06-29"],"series":[{"tool":"dbt","data":[17498626,18265866,18536928,18890860,19816041,20918341,21176058,22036776,21716653,20657393,21996918,21347172,21423900,23282342,23637755,23563654,26984157,29125452,25303326,23626384,23901117,24014195,24150931,25500287]},{"tool":"dlt","data":[1650094,1697112,1438024,1471637,1347129,1477895,1722501,2461082,2695745,2468903,2431315,2379497,2629454,1752159,1379084,1318625,1216954,1232147,1460273,1434959,1568956,1647336,1719098,1690152]},{"tool":"duckdb","data":[6188896,6071042,5937677,6297073,6470376,6549885,7029699,7518763,8321614,7232558,8093263,9802180,9655888,9765438,9387994,8786032,9688450,9668316,10505306,9947886,10314500,11090243,11795350,11957870]},{"tool":"polars","data":[9562021,9248117,8327157,9284897,10092912,9097831,10606507,10570812,10722861,10492108,11488136,10862543,11776436,11800700,12635030,11850222,12296285,12206732,13601992,14122721,15016999,12701746,13538646,13845503]}]}};
+
+  let metrics = FALLBACK;
+  let metricsPromise = null;
+  let metricsSettled = false;   // gates the staleness check: only judge real data
+  function loadMetrics() {
+    if (metricsPromise) return metricsPromise;
+    metricsPromise = fetch('data/metrics.json', { cache: 'no-cache' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(json => { if (json && json.hero && json.downloads_weekly) metrics = json; return metrics; })
+      .catch(() => metrics)
+      .then(m => { metricsSettled = true; return m; });
+    return metricsPromise;
+  }
+
+  // --- DuckDB-WASM engine ----------------------------------------------------
+  // Pinned CDN build. The eh wasm is ~34 MB uncompressed — over Cloudflare
+  // Pages' 25 MiB per-file limit — so it can't be self-hosted here; jsdelivr
+  // serves it brotli-compressed at ~6.5 MB. Loaded lazily, only on Run.
+  const DUCKDB_CDN = 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.32.0';
+  let enginePromise = null;
+  function loadEngine() {
+    if (enginePromise) return enginePromise;
+    enginePromise = (async () => {
+      const duckdb = await import(DUCKDB_CDN + '/+esm');
+      // Same-origin Blob wrapper: workers can't be constructed cross-origin.
+      const workerUrl = URL.createObjectURL(new Blob(
+        ['importScripts("' + DUCKDB_CDN + '/dist/duckdb-browser-eh.worker.js");'],
+        { type: 'text/javascript' }
+      ));
+      const db = new duckdb.AsyncDuckDB(new duckdb.VoidLogger(), new Worker(workerUrl));
+      await db.instantiate(DUCKDB_CDN + '/dist/duckdb-eh.wasm');
+      URL.revokeObjectURL(workerUrl);
+      await db.registerFileURL('metrics.parquet', new URL('data/metrics.parquet', location.href).href, duckdb.DuckDBDataProtocol.HTTP, false);
+      return db.connect();
+    })();
+    return enginePromise;
+  }
+
+  // Runs the widget's queries for real, in the visitor's browser, against the
+  // Parquet the pipeline committed — then reshapes the Arrow results into the
+  // exact shapes the renderers already consume.
+  async function runQueriesInBrowser() {
+    const conn = await loadEngine();
+    async function q(sql) {
+      const t0 = performance.now();
+      const res = await conn.query(sql);
+      state.elapsed += performance.now() - t0;
+      state.queries += 1;
+      return res.toArray().map(r => r.toJSON());
+    }
+    const dl = await q("SELECT tool, day::varchar AS day, value FROM read_parquet('metrics.parquet') WHERE mart = 'downloads_weekly' ORDER BY tool, day");
+    const sc = await q("SELECT tool, value AS stars FROM read_parquet('metrics.parquet') WHERE mart = 'stars_current' ORDER BY value DESC");
+    await q("SELECT count(DISTINCT day) AS days FROM read_parquet('metrics.parquet') WHERE mart = 'stars_history'");
+    const weeks = [...new Set(dl.map(r => r.day))].sort();
+    const byTool = {};
+    dl.forEach(r => { (byTool[r.tool] = byTool[r.tool] || {})[r.day] = Number(r.value); });
+    metrics = Object.assign({}, metrics, {
+      downloads_weekly: { weeks, series: Object.keys(byTool).sort().map(t => ({ tool: t, data: weeks.map(w => (w in byTool[t]) ? byTool[t][w] : null) })) },
+      stars: sc.map(r => ({ tool: r.tool, stars: Number(r.stars) })),
+    });
+    state.engine = 'wasm';
+    return 'wasm';
+  }
+
+  // The "refreshed this morning" claim polices itself: it only survives if the
+  // data really is from today; otherwise the badge downgrades to a dated line.
+  const todayISO = () => {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  };
+  const dataIsStale = () => metricsSettled && !!metrics.updated && metrics.updated < todayISO();
+
+  const fmtInt = n => n.toLocaleString(document.documentElement.lang === 'nl' ? 'nl-NL' : 'en-GB');
+  const fmtM = n => { const m = n / 1e6; return (m >= 10 ? Math.round(m) : m.toFixed(1)) + 'm'; };
+
+  function buildChartSVG(list, w, h) {
+    const padL = 34, padR = 12, padT = 12, padB = 8;
+    const iw = w - padL - padR, ih = h - padT - padB;
+    const n = Math.max(...list.map(s => s.data.length));
+    const max = Math.max(...list.flatMap(s => s.data.filter(v => v != null))) * 1.06;
+    const x = i => padL + i * (iw / (n - 1));
+    const y = v => padT + ih - (v / max) * ih;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" style="display:block;overflow:visible;" role="img" aria-label="Line chart of weekly PyPI downloads per tool.">`;
+    [0.5, 1].forEach(f => {
+      const gy = padT + ih - f * ih;
+      svg += `<line x1="${padL}" x2="${padL+iw}" y1="${gy}" y2="${gy}" stroke="#E4DCCC" stroke-width="1" stroke-dasharray="2 4"/>`;
+      svg += `<text x="${padL-6}" y="${gy+3}" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#B8AF9C">${fmtM(max*f)}</text>`;
+    });
+    svg += `<line x1="${padL}" x2="${padL+iw}" y1="${padT+ih}" y2="${padT+ih}" stroke="#D8CFBD" stroke-width="1"/>`;
+    svg += `<text x="${padL-6}" y="${padT+ih+3}" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="#B8AF9C">0</text>`;
+    list.forEach(s => {
+      const pts = s.data.map((v,i) => v == null ? null : `${x(i)},${y(v)}`).filter(Boolean).join(' ');
+      svg += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="${s.width}" stroke-linejoin="round" stroke-linecap="round"/>`;
+    });
+    list.filter(s => s.dot).forEach(s => {
+      const i = s.data.length - 1;
+      if (s.data[i] != null) svg += `<circle cx="${x(i)}" cy="${y(s.data[i])}" r="3.2" fill="${s.color}"/>`;
+    });
+    svg += `</svg>`;
+    return svg;
+  }
+
+  function renderCharts() {
+    const dw = metrics.downloads_weekly;
+    if (!dw || !dw.series || !dw.series.length) return;
+    const last = s => { for (let i = s.data.length - 1; i >= 0; i--) if (s.data[i] != null) return s.data[i]; return 0; };
+    const list = dw.series
+      .map(s => ({ name: s.tool, color: COLORS[s.tool] || '#8C8476', width: s.tool === EMPH ? 2.4 : 1.5, dot: s.tool === EMPH, data: s.data }))
+      .sort((a,b) => last(b) - last(a));
+    document.querySelectorAll('[data-chart="downloads"]').forEach(el => { el.innerHTML = buildChartSVG(list, 420, 190); });
+    document.querySelectorAll('[data-chart-range="downloads"]').forEach(el => {
+      const spans = el.querySelectorAll('span');
+      if (spans.length === 2 && dw.weeks.length) { spans[0].textContent = dw.weeks[0]; spans[1].textContent = dw.weeks[dw.weeks.length-1]; }
+    });
+    document.querySelectorAll('[data-legend]').forEach(el => {
+      el.innerHTML = list.map(s =>
+        `<span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono';font-size:11.5px;color:${s.name===EMPH?'#221D16':'#5A5348'};"><span style="width:15px;height:${s.name===EMPH?3:2}px;background:${s.color};border-radius:2px;"></span>${s.name} · ${fmtM(last(s))}</span>`
+      ).join('');
+    });
+  }
+
+  function renderStars() {
+    const tiles = document.querySelector('[data-star-tiles]');
+    if (!tiles || !metrics.stars) return;
+    tiles.innerHTML = metrics.stars.map(s => {
+      const on = s.tool === EMPH;
+      return `<div style="background:#FBF8F1;border:1px solid ${on?'#CFE3DD':'#E4DCCC'};border-radius:8px;padding:12px 14px;">` +
+        `<div style="font-family:'IBM Plex Mono';font-size:11px;color:${on?'#0F7A68':'#8C8476'};">${s.tool}</div>` +
+        `<div style="font-family:'IBM Plex Mono';font-size:19px;font-weight:500;color:${on?'#0F7A68':'#221D16'};margin-top:4px;">${fmtInt(s.stars)}</div></div>`;
+    }).join('');
+  }
+
+  function renderUpdated() {
+    document.querySelectorAll('[data-updated]').forEach(el => { el.textContent = metrics.updated || '…'; });
+  }
+
+  function renderPanels() {
+    document.querySelectorAll('[data-panel]').forEach(el => {
+      el.hidden = el.getAttribute('data-panel') !== state.run;
+    });
+  }
+
+  function renderEngine() {
+    const el = document.querySelector('[data-engine]');
+    if (!el) return;
+    if (state.engine === 'wasm') {
+      const nl = document.documentElement.lang === 'nl';
+      el.textContent = ' · ' + state.queries + (nl ? ' queries · ' : ' queries · ') +
+        Math.max(1, Math.round(state.elapsed)) + (nl ? ' ms · in je browser · duckdb-wasm' : ' ms · in your browser · duckdb-wasm');
+    } else {
+      el.textContent = '';
+    }
+  }
+
+  // Once queries have genuinely run client-side, the hero badge earns the
+  // brief's signature line — with a real count. If the data is older than
+  // today, the "this morning" default demotes itself to a dated line instead.
+  // Runs after app.js repaints the i18n default, so it wins on toggle too.
+  function renderHeroBadge() {
+    const el = document.querySelector('[data-i18n="hero.badge"]');
+    if (!el) return;
+    const nl = document.documentElement.lang === 'nl';
+    if (state.engine === 'wasm') {
+      el.innerHTML = nl
+        ? 'Deze pagina draaide <span style="font-weight:600;">' + state.queries + '</span> SQL-queries in je browser om te tekenen wat hieronder staat.'
+        : 'This page ran <span style="font-weight:600;">' + state.queries + '</span> SQL queries in your browser to draw what&rsquo;s below.';
+      return;
+    }
+    if (dataIsStale()) {
+      el.innerHTML = (nl
+        ? 'Alles hieronder is getekend uit pipeline-data · laatst ververst '
+        : 'Everything below is drawn from pipeline data · last refreshed ') + metrics.updated;
+      const term = document.querySelector('[data-i18n="hero.term"]');
+      if (term) term.textContent = nl ? 'stars_current · gebouwd in CI' : 'stars_current · built in CI';
+    }
+  }
+
+  function renderBuild() {
+    const el = document.querySelector('[data-build]');
+    if (!el) return;
+    const b = metrics.build;
+    if (!b || !b.sha) { el.hidden = true; return; }
+    el.hidden = false;
+    el.textContent = 'build ' + b.sha.slice(0, 7) + (b.run_url ? ' ↗' : '');
+    if (b.run_url) el.href = b.run_url; else el.removeAttribute('href');
+  }
+
+  function render() {
+    renderPanels();
+    renderUpdated();
+    renderEngine();
+    renderHeroBadge();
+    renderBuild();
+    if (state.run === 'loaded') { renderCharts(); renderStars(); }
+  }
+  // Let the shared i18n layer repaint dynamic bits after a language swap.
+  window.__renderDynamic = render;
+
+  document.querySelectorAll('[data-run]').forEach(btn => btn.addEventListener('click', () => {
+    // Anonymous counter for "does anyone actually press Run?" — lands in D1.
+    try { navigator.sendBeacon && navigator.sendBeacon('/api/event', new Blob([JSON.stringify({ event: 'run' })], { type: 'application/json' })); } catch (e) {}
+    state.run = 'running';
+    render();
+    clearTimeout(runTimer);
+    // Both engines start while the replay animation plays. DuckDB-WASM gets a
+    // grace window past the animation; if it's still cold (slow network, old
+    // browser, file://) we render from the JSON and say so — the wasm keeps
+    // warming in the background and wins on the next Run.
+    const jsonReady = loadMetrics();
+    const wasmReady = runQueriesInBrowser().catch(err => { console.warn('duckdb-wasm unavailable, falling back to json:', err); return null; });
+    const grace = new Promise(res => setTimeout(() => res(null), 8000));
+    runTimer = setTimeout(async () => {
+      const engine = await Promise.race([wasmReady, grace]);
+      if (engine !== 'wasm') { await jsonReady; state.engine = 'json'; }
+      state.run = 'loaded';
+      render();
+    }, reduce ? 250 : 1750);
+  }));
+
+  document.querySelectorAll('[data-reset]').forEach(btn => btn.addEventListener('click', () => {
+    clearTimeout(runTimer);
+    state.run = 'idle';
+    render();
+  }));
+
+  // --- Hero terminal -------------------------------------------------------
+  // Types out the exact query pipeline/export.py ran this morning (the SQL
+  // travels inside metrics.json, so screen and pipeline can't drift apart),
+  // then draws the rows that query actually returned.
+  (function initHero(){
+    const codeEl = document.querySelector('[data-hero-sql]');
+    const caret  = document.querySelector('[data-hero-caret]');
+    const rowsEl = document.querySelector('[data-hero-rows]');
+    const metaEl = document.querySelector('[data-hero-meta]');
+    if (!codeEl || !rowsEl) return;
+
+    function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+    function highlight(s){
+      return esc(s).replace(/\b(SELECT|FROM|GROUP BY|ORDER BY|LIMIT|AS|DESC)\b/g, '<span style="color:#0F7A68;">$1</span>');
+    }
+    function showResults(){
+      const rows = (metrics.hero && metrics.hero.rows) || [];
+      rowsEl.innerHTML = '';
+      rows.forEach((r,i) => {
+        const first = i === 0;
+        const tr = document.createElement('tr');
+        tr.style.cssText = 'opacity:0;animation:fadeUp .4s ease ' + (i*0.12) + 's forwards;';
+        const dot = first
+          ? '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0F7A68;margin-right:8px;"></span>'
+          : '<span style="display:inline-block;width:8px;margin-right:8px;"></span>';
+        tr.innerHTML =
+          '<td style="padding:5px 0;color:' + (first?'#0F7A68':'#221D16') + ';font-weight:' + (first?'600':'400') + ';">' + dot + r.tool + '</td>' +
+          '<td style="padding:5px 0;text-align:right;color:' + (first?'#0F7A68':'#5A5348') + ';font-weight:' + (first?'600':'400') + ';">' + fmtInt(r.stars) + '</td>';
+        rowsEl.appendChild(tr);
+      });
+      const rc = metaEl.querySelector('[data-hero-rowcount]');
+      if (rc) rc.textContent = rows.length + ' rows';
+      const el = metaEl.querySelector('[data-hero-elapsed]');
+      if (el) el.textContent = ((metrics.hero && metrics.hero.elapsed_ms) || '?') + ' ms · in this morning’s Action';
+      metaEl.style.opacity = '1';
+    }
+    async function run(){
+      await loadMetrics().catch(() => {});
+      const SQL = (metrics.hero && metrics.hero.sql) || '';
+      if (reduce){
+        codeEl.innerHTML = highlight(SQL);
+        caret.style.display = 'none';
+        showResults();
+        return;
+      }
+      let i = 0;
+      (function type(){
+        if (i <= SQL.length){
+          codeEl.textContent = SQL.slice(0, i++);
+          setTimeout(type, 26);
+        } else {
+          codeEl.innerHTML = highlight(SQL);
+          caret.style.animation = 'none';
+          caret.style.opacity = '0';
+          setTimeout(showResults, 380);
+        }
+      })();
+    }
+    run();
+  })();
+
+  // --- Contact form --------------------------------------------------------
+  // POSTs to the Pages Function at /api/contact (functions/api/contact.js).
+  document.querySelectorAll('[data-contact-form]').forEach(form => form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const nl = document.documentElement.lang === 'nl';
+    const status = form.querySelector('[data-form-status]');
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    status.style.color = '#8C8476';
+    status.textContent = nl ? 'versturen …' : 'sending …';
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      form.reset();
+      status.style.color = '#0F7A68';
+      status.textContent = nl ? 'Gelukt — je bericht staat in de database. Ik antwoord echt.' : 'Sent — your note is in the database. I actually reply.';
+    } catch (err) {
+      status.style.color = '#B15C36';
+      status.textContent = nl ? 'Versturen mislukte — mail me op info@rensevanderzee.nl.' : 'Sending failed — mail me at info@rensevanderzee.nl instead.';
+    } finally {
+      btn.disabled = false;
+    }
+  }));
+
+  loadMetrics().then(render);
+  render();
+})();
+</script>
+
+<!-- Dutch dictionary for this page; the shared engine (app.js) reads it. -->
+<script>
+window.I18N_NL = {
+  'nav.stack':'De stack', 'nav.about':'Over mij', 'nav.writing':'Schrijven',
+  'nav.more':'Meer', 'nav.contact':'Contact',
+
+  'hero.sub':'Ik hou van datastacks die klein en saai blijven — dus ik heb deze site gebouwd om er echt eentje te draaien.',
+  'hero.badge':'Alles hieronder is getekend uit data die een pipeline vanochtend ververste · <span data-updated>…</span>',
+  'hero.term':'stars_current · vanochtend gebouwd in CI',
+
+  'w.eyebrow':'Het middelpunt',
+  'w.h2':'De moderne datastack, gemeten',
+  'w.p1':'Iedereen heeft meningen over welke tools winnen. Dit zijn de cijfers.',
+  'w.p2':'Sterren zijn mindshare. Downloads zijn gebruik. Hier zie je beide — voor de tools waar ik echt mee bouw — elke ochtend ververst door een pipeline die draait terwijl ik slaap.',
+  'tab.data':'De moderne datastack',
+  'w.logs':'run-logs ↗',
+  'idle.label':'Pipeline · inactief',
+  'idle.chip4':'Commit <span style="color:#8C8476;">· parquet + json</span>',
+  'idle.run':'Speel de run van vanochtend af',
+  'idle.note':'De echte run draaide in CI terwijl ik sliep. Dit speelt hem af — en laadt daarna de Parquet die hij committe in DuckDB-WASM en draait de queries precies hier, in je browser. De eerste run downloadt de query-engine (~7 MB, daarna gecachet).',
+  'run.label':'Pipeline · draait',
+  'run.note':'parquet streamen → duckdb-wasm …',
+  'chart.downloads':'PyPI-downloads · per week (miljoenen)',
+  'chart.stars':'GitHub-sterren · vandaag',
+  'chart.starsub':'Dagelijks vastgelegd door de pipeline — de historische grafiek groeit naarmate de snapshots zich opstapelen.',
+  'loaded.src':'pipeline-run van',
+  'loaded.reset':'Opnieuw ↺',
+
+  'c.eyebrow':'Hoe deze pagina werkt',
+  'c.try':'Geloof me niet op mijn woord — de data is een publiek endpoint. Query deze site vanaf je eigen terminal:',
+  'c.lead':'Een dataplatform licht genoeg om in een webpagina te passen.',
+  'c.p1':'Er is geen server die dit doet. Geen database, geen API achter een login, niets dat me om 3 uur ’s nachts uit bed piept.',
+  'c.p2':'Elke ochtend draait een <strong style="font-weight:600;">GitHub Action</strong> een kleine <strong style="font-weight:600;">dlt → dbt → DuckDB</strong>-pipeline — extraheren, modelleren, testen — en commit één Parquet-bestand plus de JSON die deze pagina tekent. De site is statisch, geserveerd vanaf <strong style="font-weight:600;">Cloudflare’s edge</strong>; de pipeline, de modellen en de run-logs zijn allemaal openbaar in de repo. En als je daarboven op Run drukt, laadt die Parquet in <strong style="font-weight:600;">DuckDB gecompileerd naar WebAssembly</strong> en draait elke grafiek-query precies hier, in je browser. Mijn zwaardere, private diensten draaien op mijn eigen <strong style="font-weight:600;">Hetzner</strong>-box achter WireGuard. Het juiste gereedschap, het juiste gewicht, voor elke klus.',
+
+  'about.eyebrow':'Over mij',
+  'about.p1':'Ik bouw momenteel het dataplatform bij <strong style="font-weight:600;color:#221D16;">Winparts</strong>, een snelgroeiende Europese webshop in auto-onderdelen.',
+  'about.p2':'Daarvoor werkte ik mee aan een van de grootste datamigraties van Nederland — de hypothekenmigratie bij <strong style="font-weight:600;color:#221D16;">a.s.r. / Aegon</strong> — via Sogeti, eerst als data engineer en daarvoor als testanalist.',
+  'about.p3':'<strong style="font-weight:600;color:#221D16;">MSc</strong> in Technology &amp; Operations Management en <strong style="font-weight:600;color:#221D16;">BSc</strong> in Informatiekunde, beide aan de <strong style="font-weight:600;color:#221D16;">Rijksuniversiteit Groningen</strong>.',
+  'about.p4':'Ik heb een voorkeur: op maat boven zwaargewicht. Overdag betekent dat <strong style="font-weight:600;color:#221D16;">BigQuery</strong> met dlt en dbt in containers — op de schaal van Winparts is een managed warehouse de saaie keuze. Deze site draait het andere uiteinde van het spectrum: een volledig open-source stack, licht genoeg om in CI te leven. Het gaat nooit om de tool; het gaat om het gewicht van het platform afstemmen op de grootte van het probleem.',
+  'glance.title':'In het kort',
+  'glance.based':'Woont in',
+  'glance.now':'Nu', 'glance.now.v':'Dataplatform @ Winparts',
+  'glance.reach':'Grijpt naar',
+  'glance.studied':'Studeerde', 'glance.studied.v':'MSc TOM · BSc Informatiekunde, RUG',
+  'glance.runs':'Dit draait op',
+  'glance.open':'Open voor interessante dataproblemen',
+
+  'hw.eyebrow':'Hoe ik werk',
+  'hw.c1.h':'Op maat, niet herbouwd',
+  'hw.c1.p':'De meeste workloads hebben geen cluster nodig. DuckDB, Parquet en één enkele box komen een heel eind — en als je er echt uitgroeit, is een managed warehouse zoals BigQuery de saaie volgende stap. Op maat kiezen is de vaardigheid.',
+  'hw.c2.h':'Pipelines in CI, niet op piket',
+  'hw.c2.p':'Geplande jobs horen in versiebeheer en CI, waar ze te reviewen en reproduceerbaar zijn — niet op een server die iemand om 3 uur ’s nachts moet babysitten.',
+  'hw.c3.h':'Saai dat blijft draaien',
+  'hw.c3.p':'Minder bewegende delen, duidelijkere faalmodi, minder waarvoor je gebeld wordt. De beste infrastructuur is die waar je niet meer aan denkt.',
+
+  'wr.eyebrow':'Schrijven',
+  'wr.intro':'Af en toe wat notities over data engineering — vooral over meer doen met minder. De eerste hieronder; de rest verschijnt wanneer die de moeite waard is.',
+  'wr.badge':'eerste notitie',
+  'wr.progress':'12 juli 2026 · 6 min lezen',
+  'wr.title':'De open-source stack achter deze site',
+  'wr.p':'Een volledige uitleg van hoe deze pagina zichzelf draait: een <strong style="font-weight:600;">dlt → dbt → DuckDB</strong>-pipeline in GitHub Actions, één gecommit Parquet-bestand, een statische site op de edge, en de private box erachter — elk onderdeel open en reproduceerbaar.',
+  'wr.read':'Lees de notitie →',
+
+  'pr.eyebrow':'Dingen die ik heb gebouwd',
+  'pr.c1.p':'Geautomatiseerd op appartementenjacht in Barcelona — scrapers, alerts, alles erop en eraan.',
+  'pr.c2.h':'De stack, gemeten',
+  'pr.c2.p':'Het live dashboard hierboven — een dataplatform klein genoeg om in een webpagina te passen. Open source.',
+  'pr.c3.p':'Spreker in Utrecht over lichtgewicht dataplatforms — meer doen met minder.',
+  'pr.c3.s':'Slides · na de talk',
+
+  'ct.eyebrow':'Neem contact op',
+  'ct.h2':'Laat een bericht achter',
+  'ct.line':'<a href="mailto:info@rensevanderzee.nl" style="font-family:\'IBM Plex Mono\';font-size:13px;">info@rensevanderzee.nl</a> — of gebruik het formulier hieronder. Ik antwoord echt.',
+  'ct.name':'Naam',
+  'ct.email':'E-mail',
+  'ct.msg':'Bericht',
+  'ct.send':'Versturen →',
+  'ct.how':'Dit formulier post naar een functie van ~40 regels op Cloudflare’s edge; berichten belanden in een SQLite-database die ik met SQL uitlees. Nog steeds niets om ’s nachts wakker van te liggen.',
+  'foot.more':'iets meer over mij →',
+};
+</script>
+<script src="app.js"></script>
+</body>
+</html>

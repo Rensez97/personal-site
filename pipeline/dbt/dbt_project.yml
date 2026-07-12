@@ -1,0 +1,12 @@
+name: site_metrics
+version: "1.0"
+profile: site_metrics
+
+model-paths: ["models"]
+
+models:
+  site_metrics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

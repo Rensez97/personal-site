@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F4EFE4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#221D16;-webkit-font-smoothing:antialiased;}
+  a{color:#0F7A68;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<!-- TOP NAV -->
+<nav style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 44px;background:rgba(244,239,228,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4DCCC;">
+  <a href="Home.dc.html" style="font-family:'Source Serif 4';font-weight:600;font-size:16px;color:#221D16;text-decoration:none;">Rense van der Zee</a>
+  <div style="display:flex;gap:22px;font-family:'IBM Plex Mono';font-size:12px;">
+    <a href="Home.dc.html#widget" style="color:#5A5348;">The stack</a>
+    <a href="Home.dc.html#about" style="color:#5A5348;">About</a>
+    <a href="Blog.dc.html" style="color:#5A5348;">Writing</a>
+    <a href="Home.dc.html#contact" style="color:#5A5348;">Contact</a>
+  </div>
+  <a href="Home.dc.html" style="font-family:'IBM Plex Mono';font-size:11.5px;color:#5A5348;white-space:nowrap;">← Home</a>
+</nav>
+
+<!-- HERO -->
+<header style="padding:88px 72px 44px;max-width:820px;">
+  <div style="font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:.04em;color:#8C8476;">Off the résumé</div>
+  <h1 style="font-family:'Source Serif 4';font-weight:600;font-size:60px;line-height:1;letter-spacing:-.018em;margin:18px 0 0;color:#221D16;">A bit more</h1>
+  <p style="font-family:'Source Serif 4';font-weight:400;font-size:23px;line-height:1.44;color:#5A5348;max-width:32ch;margin:22px 0 0;">The stuff that isn't on a résumé.</p>
+</header>
+
+<!-- BLOCKS -->
+<section style="border-top:1px solid #E4DCCC;padding:52px 72px 20px;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;">
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;width:100%;aspect-ratio:3/2;"><image-slot id="more-bbq" shape="rect" placeholder="Drop a BBQ photo"></image-slot></div>
+      <div style="padding:22px 24px 26px;">
+        <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Low and slow.</h2>
+        <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">I cook on a BBQ more than is strictly reasonable — the kind where the cooking is measured in hours and the point is partly the waiting.</p>
+      </div>
+    </div>
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:26px 24px;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Still playing FireRed.</h2>
+      <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">Some datasets you just return to. Currently working through Pokémon FireRed again, unhurried.</p>
+    </div>
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:26px 24px;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Researching a dog.</h2>
+      <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">Somewhere between a golden retriever and something smaller. For a data engineer, "getting a dog" mostly means a research phase that refuses to end.</p>
+    </div>
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;width:100%;aspect-ratio:3/2;"><image-slot id="more-house" shape="rect" placeholder="Drop a photo of the build"></image-slot></div>
+      <div style="padding:22px 24px 26px;">
+        <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Building the house.</h2>
+        <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">Mid-renovation — most recently a dormer (dakkapel), and the slow satisfaction of drywall, trim, and getting a step-down ceiling to look intentional.</p>
+      </div>
+    </div>
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:26px 24px;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Been around.</h2>
+      <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">Recent trips to Colombia and Panama. Always happy to talk routes.</p>
+    </div>
+
+    <div style="background:#FBF8F1;border:1px solid #E4DCCC;border-radius:12px;padding:26px 24px;">
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:21px;line-height:1.15;color:#221D16;margin:0 0 10px;">Tinkering with the server.</h2>
+      <p style="font-size:15px;line-height:1.68;color:#5A5348;margin:0;">The same Hetzner box that serves this site runs my experiments — a habit that keeps leaking back into the day job.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section style="padding:40px 72px 56px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:1px solid #E4DCCC;padding-top:26px;">
+    <a href="Home.dc.html" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← Back to the main site</a>
+    <div style="display:flex;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;">
+      <a href="#" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="#" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="Blog.dc.html" style="padding-left:14px;">Blog</a>
+    </div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

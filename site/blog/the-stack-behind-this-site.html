@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The open-source stack behind this site — Rense van der Zee</title>
+<meta name="description" content="I advocate small, open-source data stacks — but I'd never run one end-to-end myself. So I made my own website the guinea pig: dlt → dbt → DuckDB in a GitHub Action, DuckDB-WASM in your browser.">
+<meta property="og:title" content="The open-source stack behind this site">
+<meta property="og:description" content="A data platform light enough to fit inside a web page — what it took, what it costs (nothing), and what actually bit me.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rensevanderzee.nl/blog/the-stack-behind-this-site.html">
+<link rel="canonical" href="https://rensevanderzee.nl/blog/the-stack-behind-this-site.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23F4EFE4'/%3E%3Ccircle cx='50' cy='50' r='26' fill='%230F7A68'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-brand">Rense van der Zee</a>
+    <div class="nav-links">
+      <a href="/#widget" data-i18n="nav.stack">The stack</a>
+      <a href="/#about" data-i18n="nav.about">About</a>
+      <a href="/blog.html" class="active" data-i18n="nav.writing">Writing</a>
+      <a href="/more.html" data-i18n="nav.more">More</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language / Taal">
+        <button data-lang="en" aria-pressed="true" title="English">
+          <svg viewBox="0 0 60 30" width="19" height="10" aria-hidden="true">
+            <clipPath id="gbS"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+            <clipPath id="gbT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+            <g clip-path="url(#gbS)">
+              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#gbT)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>EN
+        </button>
+        <button data-lang="nl" aria-pressed="false" title="Nederlands">
+          <svg viewBox="0 0 21 15" width="19" height="10" aria-hidden="true">
+            <rect width="21" height="15" fill="#fff"/>
+            <rect width="21" height="5" fill="#AE1C28"/>
+            <rect y="10" width="21" height="5" fill="#21468B"/>
+          </svg>NL
+        </button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<article class="container" style="padding-top:72px;padding-bottom:72px;">
+  <div style="max-width:68ch;">
+    <a href="/blog.html" data-i18n="post.back" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;">← all notes</a>
+    <h1 style="font-family:'Source Serif 4';font-weight:600;font-size:42px;line-height:1.08;letter-spacing:-.015em;color:#221D16;margin:22px 0 0;">The open-source stack behind this site</h1>
+    <p style="font-family:'Source Serif 4';font-weight:400;font-size:21px;line-height:1.45;color:#5A5348;margin:16px 0 0;">I advocate small, open-source data stacks. I had never run one end-to-end myself. So I made my own website the guinea pig.</p>
+    <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin:20px 0 0;padding-bottom:28px;border-bottom:1px solid #E4DCCC;">12 July 2026 · 6 min read</div>
+
+    <div style="font-size:16.5px;line-height:1.75;color:#2b261f;">
+
+      <p style="margin:28px 0 0;">For a while now I've had an opinion: most data platforms are too heavy for the problem they solve. DuckDB, Parquet, dlt and dbt can carry a real workload before you need a warehouse, a cluster, or a server someone has to babysit.</p>
+
+      <p style="margin:18px 0 0;">Opinions are cheap. By day I build on BigQuery — at that scale, a managed warehouse is the right call, and I'll defend that choice too. But it meant my favourite stack was something I <em>recommended</em> more than something I had <em>run</em>. That felt like the wrong order.</p>
+
+      <p style="margin:18px 0 0;">So this site is the experiment: the smallest complete data platform I could build, running in public, with the run logs one click away.</p>
+
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.15;color:#221D16;margin:40px 0 0;">The whole platform</h2>
+
+      <p style="margin:18px 0 0;">Every morning, a GitHub Action wakes up and does this:</p>
+
+      <ol style="margin:18px 0 0;padding-left:22px;">
+        <li style="margin-bottom:12px;"><strong style="font-weight:600;">Extract &amp; load — dlt.</strong> Pulls GitHub star counts and PyPI download history for the four tools the homepage tracks (duckdb, polars, dbt, dlt). Public APIs, no keys, no credentials to rotate. dlt lands it all in a DuckDB file under a <code style="font-family:'IBM Plex Mono';font-size:14px;background:#FBF8F1;border:1px solid #E4DCCC;border-radius:4px;padding:1px 5px;">raw</code> schema.</li>
+        <li style="margin-bottom:12px;"><strong style="font-weight:600;">Transform &amp; test — dbt.</strong> Staging views clean and dedupe; marts aggregate downloads to complete weeks and keep the daily star snapshots. Fourteen models and tests run in about five seconds, because the "warehouse" is a file.</li>
+        <li><strong style="font-weight:600;">Export — DuckDB.</strong> A script runs the marts queries — including, verbatim, the SQL you see typed out on the homepage — and writes one Parquet file plus a small JSON. Then it commits both back to the repo.</li>
+      </ol>
+
+      <p style="margin:18px 0 0;">Cloudflare Pages sees the commit and redeploys. And when you press <em>Run</em> on the homepage, that same Parquet loads into DuckDB compiled to WebAssembly and the chart queries execute in your browser — the visitor is the query engine.</p>
+
+      <p style="margin:18px 0 0;">That's the whole platform. No server, no scheduler, no database running anywhere at 2am. The pipeline exists for roughly a minute a day.</p>
+
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.15;color:#221D16;margin:40px 0 0;">What actually bit me</h2>
+
+      <p style="margin:18px 0 0;"><strong style="font-weight:600;">GitHub doesn't give you history.</strong> The API tells you a repo's star count <em>now</em>, not last month. If you want a time series, you start saving daily snapshots and accept that your chart begins the day you did. Mine begins 11 July 2026. Downloads had no such problem — pypistats serves ~180 days back — which is why the site launched with a rich downloads chart and a star history that is still growing up.</p>
+
+      <p style="margin:18px 0 0;"><strong style="font-weight:600;">Complete weeks only.</strong> The first version of the downloads chart had a cheerful dip at both ends — partial weeks, not real decline. The fix is one <code style="font-family:'IBM Plex Mono';font-size:14px;background:#FBF8F1;border:1px solid #E4DCCC;border-radius:4px;padding:1px 5px;">HAVING count(*) = 7</code> in a dbt model. Small stacks don't exempt you from data quality; they just make the fix a one-liner.</p>
+
+      <p style="margin:18px 0 0;"><strong style="font-weight:600;">DuckDB-WASM is 34&nbsp;MB.</strong> I wanted to self-host it — no third-party CDN, fully on-thesis. But the WebAssembly binary is ~34&nbsp;MB uncompressed, and Cloudflare Pages caps files at 25&nbsp;MiB. So it loads from jsdelivr, version-pinned, brotli'd down to ~7&nbsp;MB over the wire, and only when you actually press Run. Right-sizing applies to trade-offs too: I traded a little purity for a page that stays light for everyone who never clicks.</p>
+
+      <p style="margin:18px 0 0;"><strong style="font-weight:600;">The honesty rule was the real architecture.</strong> Early versions of this page mocked the widget with invented numbers, and the site claimed things the code didn't do yet. The rule I ended up with: every claim on the page must be either verifiable from my CV or demonstrated by the page itself. That rule deleted more copy than any design review — and it decided the build order, because the pipeline had to exist before the page could say it did. The page even polices itself now: if the pipeline ever stops committing, the "refreshed this morning" line quietly demotes itself to a dated one.</p>
+
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.15;color:#221D16;margin:40px 0 0;">What it costs</h2>
+
+      <ul style="margin:18px 0 0;padding-left:22px;">
+        <li>GitHub Actions: €0 (public repo, ~1 minute/day)</li>
+        <li>Cloudflare Pages: €0</li>
+        <li>DuckDB, dbt, dlt: €0</li>
+        <li>Total: the domain name.</li>
+      </ul>
+
+      <p style="margin:18px 0 0;">That's the point. Not that everything should run this way — my day job runs on BigQuery for good reasons — but that <em>this</em> workload fits in a web page, so anything heavier would have been costume.</p>
+
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.15;color:#221D16;margin:40px 0 0;">Try it from your terminal</h2>
+
+      <p style="margin:18px 0 0;">The data isn't locked inside the page — it's a public Parquet file. If you have DuckDB installed, this works from anywhere:</p>
+
+      <pre style="margin:18px 0 0;font-family:'IBM Plex Mono';font-size:13px;line-height:1.65;color:#0F7A68;background:#FBF8F1;border:1px solid #CFE3DD;border-radius:8px;padding:14px 16px;overflow-x:auto;">duckdb -c "SELECT tool, value AS stars
+FROM read_parquet('https://rensevanderzee.nl/data/metrics.parquet')
+WHERE mart = 'stars_current' ORDER BY stars DESC;"</pre>
+
+      <p style="margin:18px 0 0;">A website you can query with SQL. It's a small thing, but it makes the thesis literal: the site doesn't just describe a data platform — it serves one.</p>
+
+      <h2 style="font-family:'Source Serif 4';font-weight:600;font-size:27px;line-height:1.15;color:#221D16;margin:40px 0 0;">What's next</h2>
+
+      <p style="margin:18px 0 0;">A question box that translates plain English to SQL and runs it — client-side, against the same read-only Parquet, which makes it safe by construction. And a longer note on the framework behind all of this: how to pick the <em>weight class</em> of a data platform, from a stack like this one up to the managed warehouses I build on during the day.</p>
+
+      <p style="margin:18px 0 0;">Everything above is open: <a href="https://github.com/Rensez97/personal-site" target="_blank" rel="noopener">github.com/Rensez97/personal-site</a>. If you spot something wrong, the run logs will settle it.</p>
+
+    </div>
+  </div>
+</article>
+
+<!-- FOOTER -->
+<section style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:40px 0;">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <a href="/blog.html" data-i18n="post.back" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← all notes</a>
+    <div style="display:flex;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;">
+      <a href="https://github.com/Rensez97" target="_blank" rel="noopener" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
+      <a href="https://www.linkedin.com/in/rensevanderzee" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="/more.html" data-i18n="foot.more" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+window.I18N_NL = {
+  'nav.stack':'De stack', 'nav.about':'Over mij', 'nav.writing':'Schrijven',
+  'nav.more':'Meer', 'nav.contact':'Contact',
+  'post.back':'← alle notities',
+  'foot.more':'iets meer over mij →',
+};
+</script>
+<script src="/app.js"></script>
+</body>
+</html>

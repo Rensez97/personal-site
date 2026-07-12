@@ -1,0 +1,7 @@
+site_metrics:
+  target: prod
+  outputs:
+    prod:
+      type: duckdb
+      path: ../warehouse.duckdb
+      threads: 1

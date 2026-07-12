@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_pypi_downloads
+    columns:
+      - name: tool
+        tests: [not_null]
+      - name: day
+        tests: [not_null]
+      - name: downloads
+        tests: [not_null]
+  - name: downloads_weekly
+    columns:
+      - name: tool
+        tests: [not_null]
+      - name: downloads
+        tests: [not_null]
+  - name: stars_current
+    columns:
+      - name: tool
+        tests: [not_null, unique]
+      - name: stars
+        tests: [not_null]
+  - name: stars_history
+    columns:
+      - name: stars
+        tests: [not_null]

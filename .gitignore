@@ -1,0 +1,36 @@
+# Secrets — never commit
+.env
+*.env
+!*.env.example
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*:Zone.Identifier
+
+# Reference material dropped in from other repos (has its own nested .git)
+docs/examples/homebase-infra/
+
+# Private strategy docs + unpublished drafts — never commit (repo is public)
+docs/claude/chat/
+docs/blog-drafts/
+
+# Node / build output (for the future Astro build)
+node_modules/
+dist/
+.astro/
+.cache/
+
+# Data pipeline scratch (site/data outputs + history/stars.csv ARE committed)
+*.duckdb
+*.duckdb.wal
+.venv/
+__pycache__/
+pipeline/dbt/target/
+pipeline/dbt/logs/
+pipeline/dbt/dbt_packages/
+.user.yml
+.wrangler/

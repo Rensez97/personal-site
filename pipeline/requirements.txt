@@ -1,0 +1,4 @@
+dlt[duckdb]>=1.6
+dbt-duckdb>=1.9
+duckdb>=1.1
+requests>=2.31
