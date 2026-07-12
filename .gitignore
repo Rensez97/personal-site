@@ -34,3 +34,7 @@ pipeline/dbt/logs/
 pipeline/dbt/dbt_packages/
 .user.yml
 .wrangler/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
