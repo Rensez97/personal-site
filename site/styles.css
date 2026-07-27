@@ -19,7 +19,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #0F7A68;outline-offset:2p
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 @keyframes caret{50%{opacity:0;}}
 
-.img-slot{width:100%;height:100%;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;background:#E4DCCC;color:#8C8476;font-family:'IBM Plex Mono';font-size:12px;padding:20px;border:1px dashed #B8AF9C;}
 [hidden]{display:none !important;}
 
 /* --- one container width for the whole site --- */
@@ -44,23 +43,37 @@ a:focus-visible,button:focus-visible{outline:2px solid #0F7A68;outline-offset:2p
 .site-nav.open .nav-toggle span:nth-child(2){opacity:0;}
 .site-nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
-/* --- language toggle --- */
-.lang-toggle{display:inline-flex;border:1px solid #E4DCCC;border-radius:20px;overflow:hidden;background:#FBF8F1;}
-.lang-toggle button{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;padding:5px 11px;font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;transition:background .15s,color .15s;}
-.lang-toggle button svg{border-radius:2px;box-shadow:0 0 0 1px rgba(34,29,22,.08);display:block;}
-.lang-toggle button[aria-pressed="true"]{background:#EAF3F0;color:#0F7A68;}
-.lang-toggle button[aria-pressed="false"]{filter:grayscale(.55);opacity:.72;}
-.lang-toggle button[aria-pressed="false"]:hover{opacity:1;filter:none;}
-
 /* --- responsive grids (default = desktop) --- */
 .hero-grid{display:grid;grid-template-columns:1.08fr 1fr;gap:48px;align-items:center;min-height:480px;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.about-grid{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start;}
+.about-grid{display:grid;grid-template-columns:1fr 340px;gap:56px;align-items:start;}
 .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card-grid.cols-2{grid-template-columns:repeat(2,1fr);}
+.card-grid.cols-4{grid-template-columns:repeat(4,1fr);gap:26px;}
+
+/* --- About: the "at a glance" strip under both columns ---------------------
+   Horizontal space is cheap, so the facts live in one wide band instead of a
+   tall card wedged beside the portrait. Spans sum to 12 on desktop. */
+.glance{margin-top:46px;border:1px solid #E4DCCC;background:#FBF8F1;border-radius:12px;padding:24px 26px 20px;}
+.glance-grid{margin:0;display:grid;grid-template-columns:repeat(12,1fr);gap:24px 26px;}
+.glance-grid > div{min-width:0;}
+.glance-grid dt{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.04em;color:#8C8476;margin-bottom:7px;}
+.glance-grid dd{margin:0;font-size:14px;line-height:1.5;color:#221D16;}
+.g-now{grid-column:span 2;}
+.g-before{grid-column:span 3;}
+.g-studied{grid-column:span 4;}
+.g-stack{grid-column:span 3;}
+.glance-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid #E4DCCC;font-family:'IBM Plex Mono';font-size:11.5px;color:#8C8476;}
+.glance-status{display:inline-flex;align-items:center;gap:9px;color:#0F7A68;}
+.glance-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#0F7A68;box-shadow:0 0 0 4px rgba(15,122,104,.16);flex:none;}
 
 /* Tablet: drop 3-up card grids to 2-up */
 @media (max-width:900px){
   .card-grid{grid-template-columns:repeat(2,1fr);}
+  .card-grid.cols-4{grid-template-columns:repeat(2,1fr);}
+  /* type+class beats the .g-* span classes, so the spans reset cleanly */
+  .glance-grid{grid-template-columns:repeat(2,1fr);}
+  .glance-grid > div{grid-column:auto;}
 }
 
 /* Mobile: stack layout + hamburger nav */
@@ -70,7 +83,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #0F7A68;outline-offset:2p
   .two-col{grid-template-columns:1fr;gap:20px;}
   .about-grid{grid-template-columns:1fr;gap:32px;}
   .about-grid .about-media{max-width:260px;}
+  .glance{margin-top:32px;padding:22px 20px 18px;}
+  .glance-grid{grid-template-columns:1fr;gap:18px;}
+  .glance-foot{flex-direction:column;align-items:flex-start;gap:10px;}
   .card-grid{grid-template-columns:1fr;}
+  .card-grid.cols-2{grid-template-columns:1fr;}
+  .card-grid.cols-4{grid-template-columns:1fr;gap:22px;}
   .hero-h1{font-size:44px !important;}
   .section-h2{font-size:30px !important;}
 

@@ -23,35 +23,13 @@
   <div class="container nav-inner">
     <a href="/" class="nav-brand">Rense van der Zee</a>
     <div class="nav-links">
-      <a href="/#widget" data-i18n="nav.stack">The stack</a>
-      <a href="/#about" data-i18n="nav.about">About</a>
-      <a href="/blog.html" class="active" data-i18n="nav.writing">Writing</a>
-      <a href="/more.html" data-i18n="nav.more">More</a>
-      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+      <a href="/#widget">The stack</a>
+      <a href="/#about">About</a>
+      <a href="/blog.html" class="active">Writing</a>
+      <a href="/more.html">More</a>
+      <a href="/#contact">Contact</a>
     </div>
     <div class="nav-right">
-      <div class="lang-toggle" role="group" aria-label="Language / Taal">
-        <button data-lang="en" aria-pressed="true" title="English">
-          <svg viewBox="0 0 60 30" width="19" height="10" aria-hidden="true">
-            <clipPath id="gbS"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
-            <clipPath id="gbT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
-            <g clip-path="url(#gbS)">
-              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#gbT)" stroke="#C8102E" stroke-width="4"/>
-              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-            </g>
-          </svg>EN
-        </button>
-        <button data-lang="nl" aria-pressed="false" title="Nederlands">
-          <svg viewBox="0 0 21 15" width="19" height="10" aria-hidden="true">
-            <rect width="21" height="15" fill="#fff"/>
-            <rect width="21" height="5" fill="#AE1C28"/>
-            <rect y="10" width="21" height="5" fill="#21468B"/>
-          </svg>NL
-        </button>
-      </div>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -60,7 +38,7 @@
 <!-- ARTICLE -->
 <article class="container" style="padding-top:72px;padding-bottom:72px;">
   <div style="max-width:68ch;">
-    <a href="/blog.html" data-i18n="post.back" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;">← all notes</a>
+    <a href="/blog.html" style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;">← all notes</a>
     <h1 style="font-family:'Source Serif 4';font-weight:600;font-size:42px;line-height:1.08;letter-spacing:-.015em;color:#221D16;margin:22px 0 0;">The open-source stack behind this site</h1>
     <p style="font-family:'Source Serif 4';font-weight:400;font-size:21px;line-height:1.45;color:#5A5348;margin:16px 0 0;">I advocate small, open-source data stacks. I had never run one end-to-end myself. So I made my own website the guinea pig.</p>
     <div style="font-family:'IBM Plex Mono';font-size:12px;color:#8C8476;margin:20px 0 0;padding-bottom:28px;border-bottom:1px solid #E4DCCC;">12 July 2026 · 6 min read</div>
@@ -131,23 +109,15 @@ WHERE mart = 'stars_current' ORDER BY stars DESC;"</pre>
 <!-- FOOTER -->
 <section style="background:#FBF8F1;border-top:1px solid #E4DCCC;padding:40px 0;">
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-    <a href="/blog.html" data-i18n="post.back" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← all notes</a>
+    <a href="/blog.html" style="font-family:'IBM Plex Mono';font-size:12.5px;color:#5A5348;">← all notes</a>
     <div style="display:flex;flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:12.5px;">
       <a href="https://github.com/Rensez97" target="_blank" rel="noopener" style="padding-right:14px;border-right:1px solid #D8CFBD;">GitHub</a>
-      <a href="https://www.linkedin.com/in/rensevanderzee" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
-      <a href="/more.html" data-i18n="foot.more" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
+      <a href="https://www.linkedin.com/in/rense-van-der-zee/" target="_blank" rel="noopener" style="padding:0 14px;border-right:1px solid #D8CFBD;">LinkedIn</a>
+      <a href="/more.html" style="padding-left:14px;color:#8C8476;">a bit more about me →</a>
     </div>
   </div>
 </section>
 
-<script>
-window.I18N_NL = {
-  'nav.stack':'De stack', 'nav.about':'Over mij', 'nav.writing':'Schrijven',
-  'nav.more':'Meer', 'nav.contact':'Contact',
-  'post.back':'← alle notities',
-  'foot.more':'iets meer over mij →',
-};
-</script>
 <script src="/app.js"></script>
 </body>
 </html>
