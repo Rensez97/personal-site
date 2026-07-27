@@ -1,8 +1,9 @@
-// Contact form endpoint — a Cloudflare Pages Function (~40 lines of logic).
+// Contact form endpoint. Written as a Pages-style handler (onRequestPost) and
+// imported by worker/index.js, which routes /api/* to it. ~40 lines of logic.
 // Stores the message in D1 (binding: DB) and forwards a copy to the
 // site-email-notify Worker (service binding: EMAIL), which sends it through
 // Cloudflare Email Routing — no third-party email service. Spam defence:
-// honeypot field plus a per-IP rate limit in D1. See docs/runbook.md §I2.
+// honeypot field plus a per-IP rate limit in D1. See local/runbook.md §I2 (not committed).
 
 export async function onRequestPost({ request, env }) {
   let body;

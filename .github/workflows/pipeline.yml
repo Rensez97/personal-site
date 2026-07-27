@@ -1,6 +1,6 @@
 # The daily pipeline the colophon describes: dlt -> dbt -> DuckDB in CI,
 # committing one Parquet file (+ the JSON the page reads) back to the repo.
-# Cloudflare Pages picks the commit up and redeploys the static site.
+# The connected Cloudflare Git build picks the commit up and redeploys.
 name: daily-pipeline
 
 on:

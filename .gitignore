@@ -11,12 +11,10 @@ Thumbs.db
 .vscode/
 *:Zone.Identifier
 
-# Reference material dropped in from other repos (has its own nested .git)
-docs/examples/homebase-infra/
-
-# Private strategy docs + unpublished drafts — never commit (repo is public)
-docs/claude/chat/
-docs/blog-drafts/
+# Local-only working material — photo originals, design exports, drafts,
+# reference repos. Grouped under one roof so nothing leaks into a public repo.
+# See local/README.md.
+local/
 
 # Node / build output (for the future Astro build)
 node_modules/

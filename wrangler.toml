@@ -7,7 +7,7 @@
 #   - worker/index.js runs ONLY for the /api/* routes, reusing the handlers
 #     in functions/api/* so the logic isn't duplicated.
 #   - Bindings are declared here (the dashboard "Add binding" button silently
-#     fails for this project). See docs/runbook.md §I2.
+#     fails for this project). See local/runbook.md §I2 (not committed).
 
 name = "personal-site"
 main = "worker/index.js"
