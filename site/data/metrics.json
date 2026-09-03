@@ -1,24 +1,24 @@
 {
- "updated": "2026-09-02",
+ "updated": "2026-09-03",
  "generated_by": "dlt -> dbt -> DuckDB, in a GitHub Action",
  "build": {
-  "sha": "ab0596c9c22c40167e87ea2a77724c325a8478e0",
-  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/33610577463"
+  "sha": "1c8d42fa1e17ff0fb4f330af30e4ed98af955db7",
+  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/33736118370"
  },
  "hero": {
   "sql": "SELECT tool, stars\nFROM stars_current\nORDER BY stars DESC\nLIMIT 3;",
   "rows": [
    {
     "tool": "duckdb",
-    "stars": 40922
+    "stars": 40951
    },
    {
     "tool": "polars",
-    "stars": 39582
+    "stars": 39600
    },
    {
     "tool": "dbt",
-    "stars": 13766
+    "stars": 13775
    }
   ],
   "elapsed_ms": 3
@@ -26,23 +26,23 @@
  "stars": [
   {
    "tool": "duckdb",
-   "stars": 40922,
-   "fetched_on": "2026-09-02"
+   "stars": 40951,
+   "fetched_on": "2026-09-03"
   },
   {
    "tool": "polars",
-   "stars": 39582,
-   "fetched_on": "2026-09-02"
+   "stars": 39600,
+   "fetched_on": "2026-09-03"
   },
   {
    "tool": "dbt",
-   "stars": 13766,
-   "fetched_on": "2026-09-02"
+   "stars": 13775,
+   "fetched_on": "2026-09-03"
   },
   {
    "tool": "dlt",
-   "stars": 5809,
-   "fetched_on": "2026-09-02"
+   "stars": 5815,
+   "fetched_on": "2026-09-03"
   }
  ],
  "downloads_weekly": {
@@ -249,7 +249,8 @@
    "2026-08-30",
    "2026-08-31",
    "2026-09-01",
-   "2026-09-02"
+   "2026-09-02",
+   "2026-09-03"
   ],
   "series": [
    {
@@ -306,7 +307,8 @@
      13730,
      13739,
      13754,
-     13766
+     13766,
+     13775
     ]
    },
    {
@@ -363,7 +365,8 @@
      5798,
      5802,
      5804,
-     5809
+     5809,
+     5815
     ]
    },
    {
@@ -420,7 +423,8 @@
      40815,
      40844,
      40889,
-     40922
+     40922,
+     40951
     ]
    },
    {
@@ -477,7 +481,8 @@
      39549,
      39565,
      39577,
-     39582
+     39582,
+     39600
     ]
    }
   ]
