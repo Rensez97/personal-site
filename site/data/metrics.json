@@ -1,53 +1,52 @@
 {
- "updated": "2026-10-03",
+ "updated": "2026-10-04",
  "generated_by": "dlt -> dbt -> DuckDB, in a GitHub Action",
  "build": {
-  "sha": "3e2934bee57db71da610c166bdac47398908ce0c",
-  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/37114514722"
+  "sha": "1f905fed80c8b70f207a33576e91907ec109c7ef",
+  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/37195843597"
  },
  "hero": {
   "sql": "SELECT tool, stars\nFROM stars_current\nORDER BY stars DESC\nLIMIT 3;",
   "rows": [
    {
     "tool": "duckdb",
-    "stars": 41878
+    "stars": 41895
    },
    {
     "tool": "polars",
-    "stars": 39916
+    "stars": 39914
    },
    {
     "tool": "dbt",
-    "stars": 13961
+    "stars": 13964
    }
   ],
-  "elapsed_ms": 3
+  "elapsed_ms": 2
  },
  "stars": [
   {
    "tool": "duckdb",
-   "stars": 41878,
-   "fetched_on": "2026-10-03"
+   "stars": 41895,
+   "fetched_on": "2026-10-04"
   },
   {
    "tool": "polars",
-   "stars": 39916,
-   "fetched_on": "2026-10-03"
+   "stars": 39914,
+   "fetched_on": "2026-10-04"
   },
   {
    "tool": "dbt",
-   "stars": 13961,
-   "fetched_on": "2026-10-03"
+   "stars": 13964,
+   "fetched_on": "2026-10-04"
   },
   {
    "tool": "dlt",
-   "stars": 5925,
-   "fetched_on": "2026-10-03"
+   "stars": 5926,
+   "fetched_on": "2026-10-04"
   }
  ],
  "downloads_weekly": {
   "weeks": [
-   "2026-03-30",
    "2026-04-06",
    "2026-04-13",
    "2026-04-20",
@@ -78,7 +77,6 @@
    {
     "tool": "dbt",
     "data": [
-     21347172,
      21423900,
      23282342,
      23637755,
@@ -109,7 +107,6 @@
    {
     "tool": "dlt",
     "data": [
-     2379497,
      2629454,
      1752159,
      1379084,
@@ -140,7 +137,6 @@
    {
     "tool": "duckdb",
     "data": [
-     9802180,
      9655888,
      9765438,
      9387994,
@@ -171,7 +167,6 @@
    {
     "tool": "polars",
     "data": [
-     10862543,
      11776436,
      11800700,
      12635030,
@@ -285,7 +280,8 @@
    "2026-09-30",
    "2026-10-01",
    "2026-10-02",
-   "2026-10-03"
+   "2026-10-03",
+   "2026-10-04"
   ],
   "series": [
    {
@@ -373,7 +369,8 @@
      13948,
      13954,
      13957,
-     13961
+     13961,
+     13964
     ]
    },
    {
@@ -461,7 +458,8 @@
      5913,
      5917,
      5924,
-     5925
+     5925,
+     5926
     ]
    },
    {
@@ -549,7 +547,8 @@
      41820,
      41849,
      41869,
-     41878
+     41878,
+     41895
     ]
    },
    {
@@ -637,7 +636,8 @@
      39894,
      39899,
      39911,
-     39916
+     39916,
+     39914
     ]
    }
   ]
