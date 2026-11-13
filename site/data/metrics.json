@@ -1,24 +1,24 @@
 {
- "updated": "2026-11-12",
+ "updated": "2026-11-13",
  "generated_by": "dlt -> dbt -> DuckDB, in a GitHub Action",
  "build": {
-  "sha": "c1f442b9d5f681b7597ffd24168a95c5f7431a29",
-  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/43220640971"
+  "sha": "bed05defc49c4bb81901605ba36d5115f64b3358",
+  "run_url": "https://github.com/Rensez97/personal-site/actions/runs/43423413097"
  },
  "hero": {
   "sql": "SELECT tool, stars\nFROM stars_current\nORDER BY stars DESC\nLIMIT 3;",
   "rows": [
    {
     "tool": "duckdb",
-    "stars": 43029
+    "stars": 43056
    },
    {
     "tool": "polars",
-    "stars": 40333
+    "stars": 40345
    },
    {
     "tool": "dbt",
-    "stars": 14153
+    "stars": 14164
    }
   ],
   "elapsed_ms": 2
@@ -26,28 +26,27 @@
  "stars": [
   {
    "tool": "duckdb",
-   "stars": 43029,
-   "fetched_on": "2026-11-12"
+   "stars": 43056,
+   "fetched_on": "2026-11-13"
   },
   {
    "tool": "polars",
-   "stars": 40333,
-   "fetched_on": "2026-11-12"
+   "stars": 40345,
+   "fetched_on": "2026-11-13"
   },
   {
    "tool": "dbt",
-   "stars": 14153,
-   "fetched_on": "2026-11-12"
+   "stars": 14164,
+   "fetched_on": "2026-11-13"
   },
   {
    "tool": "dlt",
-   "stars": 6083,
-   "fetched_on": "2026-11-12"
+   "stars": 6087,
+   "fetched_on": "2026-11-13"
   }
  ],
  "downloads_weekly": {
   "weeks": [
-   "2026-05-11",
    "2026-05-18",
    "2026-05-25",
    "2026-06-01",
@@ -78,7 +77,6 @@
    {
     "tool": "dbt",
     "data": [
-     29125452,
      25303326,
      23626384,
      23901117,
@@ -109,7 +107,6 @@
    {
     "tool": "dlt",
     "data": [
-     1232147,
      1460273,
      1434959,
      1568956,
@@ -140,7 +137,6 @@
    {
     "tool": "duckdb",
     "data": [
-     9668316,
      10505306,
      9947886,
      10314500,
@@ -171,7 +167,6 @@
    {
     "tool": "polars",
     "data": [
-     12206732,
      13601992,
      14122721,
      15016999,
@@ -325,7 +320,8 @@
    "2026-11-09",
    "2026-11-10",
    "2026-11-11",
-   "2026-11-12"
+   "2026-11-12",
+   "2026-11-13"
   ],
   "series": [
    {
@@ -453,7 +449,8 @@
      14137,
      14139,
      14144,
-     14153
+     14153,
+     14164
     ]
    },
    {
@@ -581,7 +578,8 @@
      6069,
      6071,
      6076,
-     6083
+     6083,
+     6087
     ]
    },
    {
@@ -709,7 +707,8 @@
      42933,
      42957,
      42990,
-     43029
+     43029,
+     43056
     ]
    },
    {
@@ -837,7 +836,8 @@
      40288,
      40301,
      40317,
-     40333
+     40333,
+     40345
     ]
    }
   ]
